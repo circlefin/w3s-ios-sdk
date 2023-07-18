@@ -1,10 +1,10 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)
-// swift-module-flags: -target x86_64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name CircleProgrammableWalletSDK
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name CircleProgrammableWalletSDK
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import Alamofire
 @_exported import CircleProgrammableWalletSDK
-import CryptoSwift
+import CryptoKit
 import Foundation
 import IQKeyboardManagerSwift
 import SDWebImage
@@ -16,6 +16,9 @@ import _StringProcessing
 public struct ApiError : Swift.Error {
   public let errorCode: CircleProgrammableWalletSDK.ApiError.ErrorCode
   public let errorString: Swift.String
+  public var displayString: Swift.String {
+    get
+  }
 }
 extension CircleProgrammableWalletSDK.ApiError {
   public enum ErrorCode : Swift.Int {
@@ -73,7 +76,7 @@ extension CircleProgrammableWalletSDK.ApiError {
     case incorrectSecurityAnswers
     case invalidChallengeId
     case invalidApproveContent
-    case invalidSecretKey
+    case invalidEncryptionKey
     case userPinLocked
     case securityAnswersLocked
     case walletIsFrozen
@@ -85,6 +88,7 @@ extension CircleProgrammableWalletSDK.ApiError {
     case pinCodeNotMatched
     case insecurePinCode
     case hintsMatchAnswers
+    case networkError
     public var description: Swift.String {
       get
     }
@@ -101,7 +105,6 @@ extension CircleProgrammableWalletSDK.ApiError {
   @_Concurrency.MainActor(unsafe) public var titleLabel1: UIKit.UILabel!
   @_Concurrency.MainActor(unsafe) public var titleLabel2: UIKit.UILabel!
   @_Concurrency.MainActor(unsafe) public var subtitleLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var inputStackView: UIKit.UIStackView!
   @_Concurrency.MainActor(unsafe) public var errorMessageLabel: UIKit.UILabel!
   @_Concurrency.MainActor(unsafe) public var showPINButton: UIKit.UIButton!
   @_Concurrency.MainActor(unsafe) public var forgotPINButton: UIKit.UIButton!
@@ -1010,10 +1013,10 @@ public struct ImageStore {
   public enum Img {
     case naviClose
     case naviBack
-    case securityIntroMain
-    case selectCheckMark
     case dropdownArrow
+    case selectCheckMark
     case errorInfo
+    case securityIntroMain
     case securityConfirmMain
     public static func == (a: CircleProgrammableWalletSDK.ImageStore.Img, b: CircleProgrammableWalletSDK.ImageStore.Img) -> Swift.Bool
     public func hash(into hasher: inout Swift.Hasher)
@@ -1054,6 +1057,15 @@ extension UIKit.UIView : CircleProgrammableWalletSDK.LayoutConstraintItem {
 extension CircleProgrammableWalletSDK.NewPINCodeViewController {
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func textFieldDidChange(_ textField: UIKit.UITextField)
 }
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class PaddedLabel : UIKit.UILabel {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func drawText(in rect: CoreFoundation.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public var intrinsicContentSize: CoreFoundation.CGSize {
+    @objc get
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class PaddedTextField : UIKit.UITextField {
   @_Concurrency.MainActor(unsafe) public var textInsets: UIKit.UIEdgeInsets {
     get
@@ -1066,6 +1078,31 @@ extension CircleProgrammableWalletSDK.NewPINCodeViewController {
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func placeholderRect(forBounds bounds: CoreFoundation.CGRect) -> CoreFoundation.CGRect
   @_Concurrency.MainActor(unsafe) @objc override dynamic open func drawText(in rect: CoreFoundation.CGRect)
   @objc deinit
+}
+public enum RandomError : Swift.Error {
+  case secRandomCopy
+  public static func == (a: CircleProgrammableWalletSDK.RandomError, b: CircleProgrammableWalletSDK.RandomError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class RecoverPINCodeTableViewCell : UIKit.UITableViewCell {
+  @_Concurrency.MainActor(unsafe) public var contentStackView: UIKit.UIStackView!
+  @_Concurrency.MainActor(unsafe) public var questionHintStackView: UIKit.UIStackView!
+  @_Concurrency.MainActor(unsafe) public var hintStackView: UIKit.UIStackView!
+  @_Concurrency.MainActor(unsafe) public var hintTitleLabel: CircleProgrammableWalletSDK.PaddedLabel!
+  @_Concurrency.MainActor(unsafe) public var answerStackView: UIKit.UIStackView!
+  @_Concurrency.MainActor(unsafe) public var answerTitleStackView: UIKit.UIStackView!
+  @_Concurrency.MainActor(unsafe) public var answerTitleLabel: UIKit.UILabel!
+  @_Concurrency.MainActor(unsafe) public var answerMarkLabel: UIKit.UILabel!
+  @_Concurrency.MainActor(unsafe) public var cellBottomLineView: UIKit.UIView!
+  @objc deinit
+}
+extension CircleProgrammableWalletSDK.RecoverPINCodeTableViewCell : UIKit.UITextFieldDelegate {
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func textFieldDidBeginEditing(_ textField: UIKit.UITextField)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func textFieldDidEndEditing(_ textField: UIKit.UITextField, reason: UIKit.UITextField.DidEndEditingReason)
+  @_Concurrency.MainActor(unsafe) @objc dynamic public func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
 }
 @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class RecoverPINCodeViewController : CircleProgrammableWalletSDK.BaseViewController {
   @_Concurrency.MainActor(unsafe) public var titleContentView: UIKit.UIView!
@@ -1156,16 +1193,13 @@ extension CircleProgrammableWalletSDK.SecurityQuestionsViewController : UIKit.UI
   @_Concurrency.MainActor(unsafe) public var questionTitleLabel: UIKit.UILabel!
   @_Concurrency.MainActor(unsafe) public var questionMarkLabel: UIKit.UILabel!
   @_Concurrency.MainActor(unsafe) public var questionView: UIKit.UIView!
-  @_Concurrency.MainActor(unsafe) public var questionLabel: UIKit.UILabel!
   @_Concurrency.MainActor(unsafe) public var questionTrailingButton: UIKit.UIButton!
   @_Concurrency.MainActor(unsafe) public var answerStackView: UIKit.UIStackView!
   @_Concurrency.MainActor(unsafe) public var answerTitleStackView: UIKit.UIStackView!
   @_Concurrency.MainActor(unsafe) public var answerTitleLabel: UIKit.UILabel!
   @_Concurrency.MainActor(unsafe) public var answerMarkLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var answerTextField: CircleProgrammableWalletSDK.InputTextField!
   @_Concurrency.MainActor(unsafe) public var hintStackView: UIKit.UIStackView!
   @_Concurrency.MainActor(unsafe) public var hintTitleLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var hintTextField: CircleProgrammableWalletSDK.InputTextField!
   @_Concurrency.MainActor(unsafe) public var hintWarningLabel: UIKit.UILabel!
   @_Concurrency.MainActor(unsafe) public var cellBottomLineView: UIKit.UIView!
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
@@ -1174,6 +1208,15 @@ extension CircleProgrammableWalletSDK.SecurityQuestionsViewController : UIKit.UI
 extension CircleProgrammableWalletSDK.SecurityQuestionTableViewCell : UIKit.UITextFieldDelegate {
   @_Concurrency.MainActor(unsafe) @objc dynamic public func textFieldDidBeginEditing(_ textField: UIKit.UITextField)
   @_Concurrency.MainActor(unsafe) @objc dynamic public func textFieldDidEndEditing(_ textField: UIKit.UITextField, reason: UIKit.UITextField.DidEndEditingReason)
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class SecuritySummaryTableViewCell : UIKit.UITableViewCell {
+  @_Concurrency.MainActor(unsafe) public var containerView: UIKit.UIView!
+  @_Concurrency.MainActor(unsafe) public var titleLabel: UIKit.UILabel!
+  @_Concurrency.MainActor(unsafe) public var contentStackView: UIKit.UIStackView!
+  @_Concurrency.MainActor(unsafe) public var questionTitleLabel: UIKit.UILabel!
+  @_Concurrency.MainActor(unsafe) public var answerTitleLabel: UIKit.UILabel!
+  @_Concurrency.MainActor(unsafe) public var hintTitleLabel: UIKit.UILabel!
+  @objc deinit
 }
 @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class SecuritySummaryViewController : CircleProgrammableWalletSDK.BaseViewController {
   @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView!
@@ -1198,42 +1241,44 @@ extension CircleProgrammableWalletSDK.SelectQuestionViewController : UIKit.UITab
   @_Concurrency.MainActor(unsafe) @objc dynamic public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
   @_Concurrency.MainActor(unsafe) @objc dynamic public func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
 }
-public struct ThemeColorConfig : Swift.Decodable {
-  public let textMain: Swift.String?, textAuxiliary: Swift.String?
-  public let textAction: Swift.String?, textActionPressed: Swift.String?
-  public let placeholder: Swift.String?
-  public let requiredSign: Swift.String?, error: Swift.String?, errorBackground: Swift.String?
-  public let textMain2: Swift.String?, textAuxiliary2: Swift.String?
-  public let textSummary: Swift.String?, textSummaryHighlight: Swift.String?
-  public let disabledMainBTText: Swift.String?, disabledMainBTBackground: Swift.String?
-  public let mainBTText: Swift.String?, mainBTBackground: Swift.String?
-  public let mainBTTextPressed: Swift.String?, mainBTBackgroundPressed: Swift.String?
-  public let success: Swift.String?
-  public let inputBoarder: Swift.String?, inputBoarderFocused: Swift.String?, inputBoarderFocusedShadow: Swift.String?
-  public let disabledInputBackground: Swift.String?
-  public let tagText: Swift.String?, tagBackground: Swift.String?
-  public let tagFollowingText: Swift.String?, divider: Swift.String?
-  public let pinDotBase: Swift.String?, pinDotBaseBoarder: Swift.String?, pinDotActivated: Swift.String?
-  public let background: Swift.String?, securityConfirmMainBg: Swift.String?
-  public init(from decoder: Swift.Decoder) throws
-}
-public struct ThemeFontConfig : Swift.Decodable {
-  public let ultraLight: Swift.String?
-  public let thin: Swift.String?
-  public let light: Swift.String?
-  public let regular: Swift.String?
-  public let medium: Swift.String?
-  public let semibold: Swift.String?
-  public let bold: Swift.String?
-  public let heavy: Swift.String?
-  public let black: Swift.String?
-  public init(ultraLight: Swift.String? = nil, thin: Swift.String? = nil, light: Swift.String? = nil, regular: Swift.String? = nil, medium: Swift.String? = nil, semibold: Swift.String? = nil, bold: Swift.String? = nil, heavy: Swift.String? = nil, black: Swift.String? = nil)
-  public init(from decoder: Swift.Decoder) throws
-}
 public struct ThemeConfig : Swift.Decodable {
-  public var fontConfig: CircleProgrammableWalletSDK.ThemeFontConfig?
-  public var colorConfig: CircleProgrammableWalletSDK.ThemeColorConfig?
+  public let font: CircleProgrammableWalletSDK.ThemeConfig.ThemeFont?
+  public let color: CircleProgrammableWalletSDK.ThemeConfig.ThemeColor?
   public init(from decoder: Swift.Decoder) throws
+}
+extension CircleProgrammableWalletSDK.ThemeConfig {
+  public struct ThemeFont : Swift.Decodable {
+    public let ultraLight: Swift.String?
+    public let thin: Swift.String?
+    public let light: Swift.String?
+    public let regular: Swift.String?
+    public let medium: Swift.String?
+    public let semibold: Swift.String?
+    public let bold: Swift.String?
+    public let heavy: Swift.String?
+    public let black: Swift.String?
+    public init(ultraLight: Swift.String? = nil, thin: Swift.String? = nil, light: Swift.String? = nil, regular: Swift.String? = nil, medium: Swift.String? = nil, semibold: Swift.String? = nil, bold: Swift.String? = nil, heavy: Swift.String? = nil, black: Swift.String? = nil)
+    public init(from decoder: Swift.Decoder) throws
+  }
+}
+extension CircleProgrammableWalletSDK.ThemeConfig {
+  public struct ThemeColor : Swift.Decodable {
+    public let background: Swift.String?, divider: Swift.String?
+    public let success: Swift.String?, error: Swift.String?, errorBackground: Swift.String?
+    public let textMain: Swift.String?, textMain2: Swift.String?
+    public let textAuxiliary: Swift.String?, textAuxiliary2: Swift.String?
+    public let textSummary: Swift.String?, textSummaryHighlight: Swift.String?
+    public let textPlaceholder: Swift.String?
+    public let textAction: Swift.String?, textActionPressed: Swift.String?
+    public let pinDotBase: Swift.String?, pinDotBaseBorder: Swift.String?, pinDotActivated: Swift.String?
+    public let inputBorder: Swift.String?, inputBorderFocused: Swift.String?, inputBackgroundDisabled: Swift.String?
+    public let mainBTText: Swift.String?, mainBTTextPressed: Swift.String?, mainBTTextDisabled: Swift.String?
+    public let mainBTBackground: Swift.String?, mainBTBackgroundPressed: Swift.String?, mainBTBackgroundDisabled: Swift.String?
+    public let recoverPinHintTitle: Swift.String?, recoverPinHintTitleBg: Swift.String?, recoverPinHint: Swift.String?
+    public let securityConfirmMainBg: Swift.String?
+    public let titleGradients: [Swift.String]?
+    public init(from decoder: Swift.Decoder) throws
+  }
 }
 @available(iOS 8.0, *)
 extension UIKit.UILayoutSupport {
@@ -1250,7 +1295,8 @@ extension UIKit.UILayoutSupport {
   public func setLayoutProvider(_ provider: CircleProgrammableWalletSDK.WalletSdkLayoutProvider)
   public func setErrorMessenger(_ messenger: CircleProgrammableWalletSDK.ErrorMessenger)
   public func setDelegate(_ delegate: CircleProgrammableWalletSDK.WalletSdkDelegate)
-  public func execute(userToken: Swift.String, secretKey: Swift.String, challengeIds: [Swift.String], completion: CircleProgrammableWalletSDK.ExecuteCompletion? = nil)
+  public func execute(userToken: Swift.String, encryptionKey: Swift.String, challengeIds: [Swift.String], completion: CircleProgrammableWalletSDK.ExecuteCompletion? = nil)
+  public func sdkVersion() -> Swift.String?
   @objc deinit
 }
 public protocol WalletSdkDelegate : AnyObject {
@@ -1262,7 +1308,7 @@ public protocol WalletSdkLayoutProvider : AnyObject {
   func securityQuestionsRequiredCount() -> Swift.Int
   func securityConfirmItems() -> [CircleProgrammableWalletSDK.SecurityConfirmItem]
   func imageStore() -> CircleProgrammableWalletSDK.ImageStore
-  func themeFontConfig() -> CircleProgrammableWalletSDK.ThemeFontConfig?
+  func themeFont() -> CircleProgrammableWalletSDK.ThemeConfig.ThemeFont?
   func displayDateFormat() -> Swift.String
 }
 extension CircleProgrammableWalletSDK.WalletSdkLayoutProvider {
@@ -1270,7 +1316,7 @@ extension CircleProgrammableWalletSDK.WalletSdkLayoutProvider {
   public func securityQuestionsRequiredCount() -> Swift.Int
   public func securityConfirmItems() -> [CircleProgrammableWalletSDK.SecurityConfirmItem]
   public func imageStore() -> CircleProgrammableWalletSDK.ImageStore
-  public func themeFontConfig() -> CircleProgrammableWalletSDK.ThemeFontConfig?
+  public func themeFont() -> CircleProgrammableWalletSDK.ThemeConfig.ThemeFont?
   public func displayDateFormat() -> Swift.String
 }
 extension CircleProgrammableWalletSDK.ApiError.ErrorCode : Swift.Equatable {}
@@ -1284,6 +1330,8 @@ extension CircleProgrammableWalletSDK.ChallengeType : Swift.Hashable {}
 extension CircleProgrammableWalletSDK.ChallengeType : Swift.RawRepresentable {}
 extension CircleProgrammableWalletSDK.ImageStore.Img : Swift.Equatable {}
 extension CircleProgrammableWalletSDK.ImageStore.Img : Swift.Hashable {}
+extension CircleProgrammableWalletSDK.RandomError : Swift.Equatable {}
+extension CircleProgrammableWalletSDK.RandomError : Swift.Hashable {}
 extension CircleProgrammableWalletSDK.SecurityQuestion.InputType : Swift.Equatable {}
 extension CircleProgrammableWalletSDK.SecurityQuestion.InputType : Swift.Hashable {}
 extension CircleProgrammableWalletSDK.SecurityQuestion.InputType : Swift.RawRepresentable {}
