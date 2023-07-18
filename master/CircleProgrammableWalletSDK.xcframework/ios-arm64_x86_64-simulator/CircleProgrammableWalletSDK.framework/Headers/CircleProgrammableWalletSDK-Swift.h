@@ -364,6 +364,30 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK24NewPINCodeViewController")
 
 
 
+SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK11PaddedLabel")
+@interface PaddedLabel : UILabel
+- (void)drawTextInRect:(CGRect)rect;
+@property (nonatomic, readonly) CGSize intrinsicContentSize;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+
+SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK27RecoverPINCodeTableViewCell")
+@interface RecoverPINCodeTableViewCell : UITableViewCell
+- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString * _Nullable)reuseIdentifier SWIFT_UNAVAILABLE;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
+@end
+
+
+@interface RecoverPINCodeTableViewCell (SWIFT_EXTENSION(CircleProgrammableWalletSDK)) <UITextFieldDelegate>
+- (void)textFieldDidBeginEditing:(UITextField * _Nonnull)textField;
+- (void)textFieldDidEndEditing:(UITextField * _Nonnull)textField reason:(UITextFieldDidEndEditingReason)reason;
+- (BOOL)textField:(UITextField * _Nonnull)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString * _Nonnull)string SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28RecoverPINCodeViewController")
 @interface RecoverPINCodeViewController : BaseViewController
@@ -376,7 +400,6 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28RecoverPINCodeViewController")
 
 @class UITableView;
 @class NSIndexPath;
-@class UITableViewCell;
 
 @interface RecoverPINCodeViewController (SWIFT_EXTENSION(CircleProgrammableWalletSDK)) <UITableViewDataSource>
 - (NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
@@ -436,6 +459,14 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK31SecurityQuestionsViewController"
 - (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
 @end
 
+
+
+
+SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28SecuritySummaryTableViewCell")
+@interface SecuritySummaryTableViewCell : UITableViewCell
+- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString * _Nullable)reuseIdentifier SWIFT_UNAVAILABLE;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
+@end
 
 
 
@@ -860,6 +891,30 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK24NewPINCodeViewController")
 
 
 
+SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK11PaddedLabel")
+@interface PaddedLabel : UILabel
+- (void)drawTextInRect:(CGRect)rect;
+@property (nonatomic, readonly) CGSize intrinsicContentSize;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+
+SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK27RecoverPINCodeTableViewCell")
+@interface RecoverPINCodeTableViewCell : UITableViewCell
+- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString * _Nullable)reuseIdentifier SWIFT_UNAVAILABLE;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
+@end
+
+
+@interface RecoverPINCodeTableViewCell (SWIFT_EXTENSION(CircleProgrammableWalletSDK)) <UITextFieldDelegate>
+- (void)textFieldDidBeginEditing:(UITextField * _Nonnull)textField;
+- (void)textFieldDidEndEditing:(UITextField * _Nonnull)textField reason:(UITextFieldDidEndEditingReason)reason;
+- (BOOL)textField:(UITextField * _Nonnull)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString * _Nonnull)string SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28RecoverPINCodeViewController")
 @interface RecoverPINCodeViewController : BaseViewController
@@ -872,7 +927,6 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28RecoverPINCodeViewController")
 
 @class UITableView;
 @class NSIndexPath;
-@class UITableViewCell;
 
 @interface RecoverPINCodeViewController (SWIFT_EXTENSION(CircleProgrammableWalletSDK)) <UITableViewDataSource>
 - (NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
@@ -932,6 +986,14 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK31SecurityQuestionsViewController"
 - (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
 @end
 
+
+
+
+SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28SecuritySummaryTableViewCell")
+@interface SecuritySummaryTableViewCell : UITableViewCell
+- (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString * _Nullable)reuseIdentifier SWIFT_UNAVAILABLE;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
+@end
 
 
 
