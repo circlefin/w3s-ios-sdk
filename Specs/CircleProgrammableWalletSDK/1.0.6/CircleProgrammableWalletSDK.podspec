@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary = 'CircleProgrammableWalletSDK for iOS.'
   s.homepage = 'https://www.circle.com/web3-services'
   s.author = 'CIRCLE'
-  s.source = { :git => "https://github.com/circlefin/w3s-ios-sdk",
+  s.source = { :git => "https://github.com/circlefin/w3s-ios-sdk.git",
                :tag => s.version }
 
   s.platform = :ios, '13.0'

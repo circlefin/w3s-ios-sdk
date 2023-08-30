@@ -120,6 +120,7 @@ extension CircleProgrammableWalletSDK.BasePINInputViewController : UIKit.UITextF
   @objc @_Concurrency.MainActor(unsafe) dynamic public func textFieldDidChange(_ textField: UIKit.UITextField)
 }
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class BaseViewController : UIKit.UIViewController, UIKit.UIGestureRecognizerDelegate {
+  @_Concurrency.MainActor(unsafe) public var baseNaviTitleLabel: UIKit.UILabel!
   @objc deinit
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
@@ -990,6 +991,434 @@ extension CircleProgrammableWalletSDK.LayoutConstraint {
     @objc get
   }
 }
+public enum Device {
+  case iPodTouch5
+  case iPodTouch6
+  case iPodTouch7
+  case iPhone4
+  case iPhone4s
+  case iPhone5
+  case iPhone5c
+  case iPhone5s
+  case iPhone6
+  case iPhone6Plus
+  case iPhone6s
+  case iPhone6sPlus
+  case iPhone7
+  case iPhone7Plus
+  case iPhoneSE
+  case iPhone8
+  case iPhone8Plus
+  case iPhoneX
+  case iPhoneXS
+  case iPhoneXSMax
+  case iPhoneXR
+  case iPhone11
+  case iPhone11Pro
+  case iPhone11ProMax
+  case iPhoneSE2
+  case iPhone12
+  case iPhone12Mini
+  case iPhone12Pro
+  case iPhone12ProMax
+  case iPhone13
+  case iPhone13Mini
+  case iPhone13Pro
+  case iPhone13ProMax
+  case iPhoneSE3
+  case iPhone14
+  case iPhone14Plus
+  case iPhone14Pro
+  case iPhone14ProMax
+  case iPad2
+  case iPad3
+  case iPad4
+  case iPadAir
+  case iPadAir2
+  case iPad5
+  case iPad6
+  case iPadAir3
+  case iPad7
+  case iPad8
+  case iPad9
+  case iPad10
+  case iPadAir4
+  case iPadAir5
+  case iPadMini
+  case iPadMini2
+  case iPadMini3
+  case iPadMini4
+  case iPadMini5
+  case iPadMini6
+  case iPadPro9Inch
+  case iPadPro12Inch
+  case iPadPro12Inch2
+  case iPadPro10Inch
+  case iPadPro11Inch
+  case iPadPro12Inch3
+  case iPadPro11Inch2
+  case iPadPro12Inch4
+  case iPadPro11Inch3
+  case iPadPro12Inch5
+  case iPadPro11Inch4
+  case iPadPro12Inch6
+  case homePod
+  indirect case simulator(CircleProgrammableWalletSDK.Device)
+  case unknown(Swift.String)
+  public static var current: CircleProgrammableWalletSDK.Device {
+    get
+  }
+  public static var identifier: Swift.String
+  public static func mapToDevice(identifier: Swift.String) -> CircleProgrammableWalletSDK.Device
+  public static func realDevice(from device: CircleProgrammableWalletSDK.Device) -> CircleProgrammableWalletSDK.Device
+  public var diagonal: Swift.Double {
+    get
+  }
+  public var screenRatio: (width: Swift.Double, height: Swift.Double) {
+    get
+  }
+  public static var allPods: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allPhones: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allPads: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  @available(*, deprecated, renamed: "allDevicesWithSensorHousing")
+  public static var allXSeriesDevices: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allPlusSizedDevices: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allProDevices: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allMiniDevices: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allSimulatorPods: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allSimulatorPhones: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allSimulatorPads: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allSimulatorMiniDevices: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  @available(*, deprecated, renamed: "allSimulatorDevicesWithSensorHousing")
+  public static var allSimulatorXSeriesDevices: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allSimulatorPlusSizedDevices: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allSimulatorProDevices: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public var isPod: Swift.Bool {
+    get
+  }
+  public var isPhone: Swift.Bool {
+    get
+  }
+  public var isPad: Swift.Bool {
+    get
+  }
+  public var realDevice: CircleProgrammableWalletSDK.Device {
+    get
+  }
+  public var isZoomed: Swift.Bool? {
+    get
+  }
+  public static var allTouchIDCapableDevices: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allFaceIDCapableDevices: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allBiometricAuthenticationCapableDevices: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public var isTouchIDCapable: Swift.Bool {
+    get
+  }
+  public var isFaceIDCapable: Swift.Bool {
+    get
+  }
+  public var hasBiometricSensor: Swift.Bool {
+    get
+  }
+  public static var allDevicesWithSensorHousing: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allSimulatorDevicesWithSensorHousing: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public var hasSensorHousing: Swift.Bool {
+    get
+  }
+  public static var allDevicesWithRoundedDisplayCorners: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public var hasRoundedDisplayCorners: Swift.Bool {
+    get
+  }
+  public static var allDevicesWith3dTouchSupport: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public var has3dTouchSupport: Swift.Bool {
+    get
+  }
+  public static var allDevicesWithWirelessChargingSupport: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public var supportsWirelessCharging: Swift.Bool {
+    get
+  }
+  public static var allDevicesWithALidarSensor: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public var hasLidarSensor: Swift.Bool {
+    get
+  }
+  public var isCanvas: Swift.Bool? {
+    get
+  }
+  public static var allRealDevices: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allSimulators: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public var isSimulator: Swift.Bool {
+    get
+  }
+  public func isOneOf(_ devices: [CircleProgrammableWalletSDK.Device]) -> Swift.Bool
+  public var name: Swift.String? {
+    get
+  }
+  public var systemName: Swift.String? {
+    get
+  }
+  public var systemVersion: Swift.String? {
+    get
+  }
+  public var model: Swift.String? {
+    get
+  }
+  public var localizedModel: Swift.String? {
+    get
+  }
+  public var ppi: Swift.Int? {
+    get
+  }
+  public var isGuidedAccessSessionActive: Swift.Bool {
+    get
+  }
+  public var screenBrightness: Swift.Int {
+    get
+  }
+}
+extension CircleProgrammableWalletSDK.Device : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var safeDescription: Swift.String {
+    get
+  }
+}
+extension CircleProgrammableWalletSDK.Device : Swift.Equatable {
+  public static func == (lhs: CircleProgrammableWalletSDK.Device, rhs: CircleProgrammableWalletSDK.Device) -> Swift.Bool
+}
+@available(iOS 8.0, watchOS 4.0, *)
+extension CircleProgrammableWalletSDK.Device {
+  public enum BatteryState : Swift.CustomStringConvertible, Swift.Equatable {
+    case full
+    case charging(Swift.Int)
+    case unplugged(Swift.Int)
+    public var lowPowerMode: Swift.Bool {
+      get
+    }
+    public var description: Swift.String {
+      get
+    }
+  }
+  public var batteryState: CircleProgrammableWalletSDK.Device.BatteryState? {
+    get
+  }
+  public var batteryLevel: Swift.Int? {
+    get
+  }
+}
+@available(iOS 8.0, watchOS 4.0, *)
+extension CircleProgrammableWalletSDK.Device.BatteryState : Swift.Comparable {
+  public static func == (lhs: CircleProgrammableWalletSDK.Device.BatteryState, rhs: CircleProgrammableWalletSDK.Device.BatteryState) -> Swift.Bool
+  public static func < (lhs: CircleProgrammableWalletSDK.Device.BatteryState, rhs: CircleProgrammableWalletSDK.Device.BatteryState) -> Swift.Bool
+}
+extension CircleProgrammableWalletSDK.Device {
+  public enum Orientation {
+    case landscape
+    case portrait
+    public static func == (a: CircleProgrammableWalletSDK.Device.Orientation, b: CircleProgrammableWalletSDK.Device.Orientation) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var orientation: CircleProgrammableWalletSDK.Device.Orientation {
+    get
+  }
+}
+extension CircleProgrammableWalletSDK.Device {
+  public static var volumeTotalCapacity: Swift.Int? {
+    get
+  }
+  public static var volumeAvailableCapacity: Swift.Int? {
+    get
+  }
+  @available(iOS 11.0, *)
+  public static var volumeAvailableCapacityForImportantUsage: Swift.Int64? {
+    get
+  }
+  @available(iOS 11.0, *)
+  public static var volumeAvailableCapacityForOpportunisticUsage: Swift.Int64? {
+    get
+  }
+  @available(iOS 11.0, *)
+  public static var volumes: [Foundation.URLResourceKey : Swift.Int64]? {
+    get
+  }
+}
+extension CircleProgrammableWalletSDK.Device {
+  public struct ApplePencilSupport : Swift.OptionSet {
+    public var rawValue: Swift.UInt
+    public init(rawValue: Swift.UInt)
+    public static let firstGeneration: CircleProgrammableWalletSDK.Device.ApplePencilSupport
+    public static let secondGeneration: CircleProgrammableWalletSDK.Device.ApplePencilSupport
+    public typealias ArrayLiteralElement = CircleProgrammableWalletSDK.Device.ApplePencilSupport
+    public typealias Element = CircleProgrammableWalletSDK.Device.ApplePencilSupport
+    public typealias RawValue = Swift.UInt
+  }
+  public static var allApplePencilCapableDevices: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public var applePencilSupport: CircleProgrammableWalletSDK.Device.ApplePencilSupport {
+    get
+  }
+}
+extension CircleProgrammableWalletSDK.Device {
+  public enum CameraType {
+    @available(*, deprecated, renamed: "wide")
+    case normal
+    case wide
+    case telephoto
+    case ultraWide
+    public static func == (a: CircleProgrammableWalletSDK.Device.CameraType, b: CircleProgrammableWalletSDK.Device.CameraType) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var cameras: [CircleProgrammableWalletSDK.Device.CameraType] {
+    get
+  }
+  public static var allDevicesWithCamera: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  @available(*, deprecated, renamed: "allDevicesWithWideCamera")
+  public static var allDevicesWithNormalCamera: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allDevicesWithWideCamera: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allDevicesWithTelephotoCamera: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public static var allDevicesWithUltraWideCamera: [CircleProgrammableWalletSDK.Device] {
+    get
+  }
+  public var hasCamera: Swift.Bool {
+    get
+  }
+  @available(*, deprecated, renamed: "hasWideCamera")
+  public var hasNormalCamera: Swift.Bool {
+    get
+  }
+  public var hasWideCamera: Swift.Bool {
+    get
+  }
+  public var hasTelephotoCamera: Swift.Bool {
+    get
+  }
+  public var hasUltraWideCamera: Swift.Bool {
+    get
+  }
+}
+@available(iOS 11.0, watchOS 4.0, macOS 10.10.3, tvOS 11.0, *)
+extension CircleProgrammableWalletSDK.Device {
+  public enum ThermalState {
+    case nominal
+    case fair
+    case serious
+    case critical
+    public static func == (a: CircleProgrammableWalletSDK.Device.ThermalState, b: CircleProgrammableWalletSDK.Device.ThermalState) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var thermalState: CircleProgrammableWalletSDK.Device.ThermalState? {
+    get
+  }
+}
+extension CircleProgrammableWalletSDK.Device {
+  public enum CPU : Swift.Comparable {
+    case a4
+    case a5
+    case a5X
+    case a6
+    case a6X
+    case a7
+    case a8
+    case a8X
+    case a9
+    case a9X
+    case a10Fusion
+    case a10XFusion
+    case a11Bionic
+    case a12Bionic
+    case a12XBionic
+    case a12ZBionic
+    case a13Bionic
+    case a14Bionic
+    case a15Bionic
+    case a16Bionic
+    case m1
+    case m2
+    case unknown
+    public static func == (a: CircleProgrammableWalletSDK.Device.CPU, b: CircleProgrammableWalletSDK.Device.CPU) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public static func < (a: CircleProgrammableWalletSDK.Device.CPU, b: CircleProgrammableWalletSDK.Device.CPU) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var cpu: CircleProgrammableWalletSDK.Device.CPU {
+    get
+  }
+}
+extension CircleProgrammableWalletSDK.Device.CPU : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
 @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class EnterPINCodeViewController : CircleProgrammableWalletSDK.BasePINInputViewController {
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
   @objc deinit
@@ -1331,6 +1760,15 @@ extension CircleProgrammableWalletSDK.ChallengeStatus : Swift.RawRepresentable {
 extension CircleProgrammableWalletSDK.ChallengeType : Swift.Equatable {}
 extension CircleProgrammableWalletSDK.ChallengeType : Swift.Hashable {}
 extension CircleProgrammableWalletSDK.ChallengeType : Swift.RawRepresentable {}
+extension CircleProgrammableWalletSDK.Device.Orientation : Swift.Equatable {}
+extension CircleProgrammableWalletSDK.Device.Orientation : Swift.Hashable {}
+extension CircleProgrammableWalletSDK.Device.CameraType : Swift.Equatable {}
+extension CircleProgrammableWalletSDK.Device.CameraType : Swift.Hashable {}
+@available(iOS 11.0, watchOS 4.0, macOS 10.10.3, tvOS 11.0, *)
+extension CircleProgrammableWalletSDK.Device.ThermalState : Swift.Equatable {}
+@available(iOS 11.0, watchOS 4.0, macOS 10.10.3, tvOS 11.0, *)
+extension CircleProgrammableWalletSDK.Device.ThermalState : Swift.Hashable {}
+extension CircleProgrammableWalletSDK.Device.CPU : Swift.Hashable {}
 extension CircleProgrammableWalletSDK.ImageStore.Img : Swift.Equatable {}
 extension CircleProgrammableWalletSDK.ImageStore.Img : Swift.Hashable {}
 extension CircleProgrammableWalletSDK.RandomError : Swift.Equatable {}
