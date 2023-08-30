@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'CircleProgrammableWalletSDK'
-  s.version = '1.0.6'
+  s.version = '1.0.7'
   s.license = 'Apache License, Version 2.0'
   s.summary = 'CircleProgrammableWalletSDK for iOS.'
   s.homepage = 'https://www.circle.com/web3-services'
