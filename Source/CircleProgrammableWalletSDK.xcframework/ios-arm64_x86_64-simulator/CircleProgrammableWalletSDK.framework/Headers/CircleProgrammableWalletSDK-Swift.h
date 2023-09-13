@@ -253,19 +253,21 @@ using UInt = size_t;
 #endif
 
 #if defined(__OBJC__)
+@class NSCoder;
 @class UIGestureRecognizer;
 @class NSString;
 @class NSBundle;
-@class NSCoder;
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK18BaseViewController")
 @interface BaseViewController : UIViewController <UIGestureRecognizerDelegate>
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)animated;
 - (void)viewDidAppear:(BOOL)animated;
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer * _Nonnull)gestureRecognizer SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
 
@@ -274,8 +276,6 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK26BasePINInputViewController")
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)animated;
 - (void)viewWillDisappear:(BOOL)animated;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end
 
 @class UITextField;
@@ -293,10 +293,8 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK26BasePINInputViewController")
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28ConfirmPINCodeViewController")
 @interface ConfirmPINCodeViewController : BasePINInputViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (void)viewDidLoad;
 - (void)viewWillDisappear:(BOOL)animated;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
 
@@ -308,9 +306,7 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28ConfirmPINCodeViewController")
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK26EnterPINCodeViewController")
 @interface EnterPINCodeViewController : BasePINInputViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (void)viewDidLoad;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
 
@@ -353,9 +349,7 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK16LayoutConstraint")
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK24NewPINCodeViewController")
 @interface NewPINCodeViewController : BasePINInputViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (void)viewDidLoad;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
 
@@ -392,10 +386,8 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK27RecoverPINCodeTableViewCell")
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28RecoverPINCodeViewController")
 @interface RecoverPINCodeViewController : BaseViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (void)viewDidLoad;
 - (void)viewDidLayoutSubviews;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
 
@@ -411,9 +403,9 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28RecoverPINCodeViewController")
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK29SecurityConfirmViewController")
 @interface SecurityConfirmViewController : BaseViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (void)viewDidLoad;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
+- (void)viewWillAppear:(BOOL)animated;
+- (void)viewWillDisappear:(BOOL)animated;
 @end
 
 
@@ -427,8 +419,6 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK29SecurityConfirmViewController")
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28SecurityIntrosViewController")
 @interface SecurityIntrosViewController : BaseViewController
 - (void)viewDidLoad;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -450,8 +440,6 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK29SecurityQuestionTableViewCell")
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK31SecurityQuestionsViewController")
 @interface SecurityQuestionsViewController : BaseViewController
 - (void)viewDidLoad;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -473,9 +461,7 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28SecuritySummaryTableViewCell")
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK29SecuritySummaryViewController")
 @interface SecuritySummaryViewController : BaseViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (void)viewDidLoad;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
 
@@ -488,11 +474,12 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK29SecuritySummaryViewController")
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28SelectQuestionViewController")
 @interface SelectQuestionViewController : BaseViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (void)viewDidLoad;
+- (void)viewWillAppear:(BOOL)animated;
+- (void)viewWillDisappear:(BOOL)animated;
 - (void)observeValueForKeyPath:(NSString * _Nullable)keyPath ofObject:(id _Nullable)object change:(NSDictionary<NSKeyValueChangeKey, id> * _Nullable)change context:(void * _Nullable)context;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
+
 
 
 @interface SelectQuestionViewController (SWIFT_EXTENSION(CircleProgrammableWalletSDK)) <UITableViewDataSource, UITableViewDelegate>
@@ -500,7 +487,6 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28SelectQuestionViewController")
 - (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
 - (void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 @end
-
 
 
 
@@ -781,19 +767,21 @@ using UInt = size_t;
 #endif
 
 #if defined(__OBJC__)
+@class NSCoder;
 @class UIGestureRecognizer;
 @class NSString;
 @class NSBundle;
-@class NSCoder;
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK18BaseViewController")
 @interface BaseViewController : UIViewController <UIGestureRecognizerDelegate>
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)animated;
 - (void)viewDidAppear:(BOOL)animated;
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer * _Nonnull)gestureRecognizer SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
 
@@ -802,8 +790,6 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK26BasePINInputViewController")
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)animated;
 - (void)viewWillDisappear:(BOOL)animated;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end
 
 @class UITextField;
@@ -821,10 +807,8 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK26BasePINInputViewController")
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28ConfirmPINCodeViewController")
 @interface ConfirmPINCodeViewController : BasePINInputViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (void)viewDidLoad;
 - (void)viewWillDisappear:(BOOL)animated;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
 
@@ -836,9 +820,7 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28ConfirmPINCodeViewController")
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK26EnterPINCodeViewController")
 @interface EnterPINCodeViewController : BasePINInputViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (void)viewDidLoad;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
 
@@ -881,9 +863,7 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK16LayoutConstraint")
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK24NewPINCodeViewController")
 @interface NewPINCodeViewController : BasePINInputViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (void)viewDidLoad;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
 
@@ -920,10 +900,8 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK27RecoverPINCodeTableViewCell")
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28RecoverPINCodeViewController")
 @interface RecoverPINCodeViewController : BaseViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (void)viewDidLoad;
 - (void)viewDidLayoutSubviews;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
 
@@ -939,9 +917,9 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28RecoverPINCodeViewController")
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK29SecurityConfirmViewController")
 @interface SecurityConfirmViewController : BaseViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (void)viewDidLoad;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
+- (void)viewWillAppear:(BOOL)animated;
+- (void)viewWillDisappear:(BOOL)animated;
 @end
 
 
@@ -955,8 +933,6 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK29SecurityConfirmViewController")
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28SecurityIntrosViewController")
 @interface SecurityIntrosViewController : BaseViewController
 - (void)viewDidLoad;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -978,8 +954,6 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK29SecurityQuestionTableViewCell")
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK31SecurityQuestionsViewController")
 @interface SecurityQuestionsViewController : BaseViewController
 - (void)viewDidLoad;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -1001,9 +975,7 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28SecuritySummaryTableViewCell")
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK29SecuritySummaryViewController")
 @interface SecuritySummaryViewController : BaseViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (void)viewDidLoad;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
 
@@ -1016,11 +988,12 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK29SecuritySummaryViewController")
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28SelectQuestionViewController")
 @interface SelectQuestionViewController : BaseViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (void)viewDidLoad;
+- (void)viewWillAppear:(BOOL)animated;
+- (void)viewWillDisappear:(BOOL)animated;
 - (void)observeValueForKeyPath:(NSString * _Nullable)keyPath ofObject:(id _Nullable)object change:(NSDictionary<NSKeyValueChangeKey, id> * _Nullable)change context:(void * _Nullable)context;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
+
 
 
 @interface SelectQuestionViewController (SWIFT_EXTENSION(CircleProgrammableWalletSDK)) <UITableViewDataSource, UITableViewDelegate>
@@ -1028,7 +1001,6 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28SelectQuestionViewController")
 - (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
 - (void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 @end
-
 
 
 

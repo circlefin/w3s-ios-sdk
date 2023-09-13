@@ -99,35 +99,31 @@ extension CircleProgrammableWalletSDK.ApiError {
     }
   }
 }
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class BasePINInputViewController : CircleProgrammableWalletSDK.BaseViewController {
-  @_Concurrency.MainActor(unsafe) public var titleStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var titleLabelsStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var titleLabel1: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var titleLabel2: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var subtitleLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var errorMessageLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var showPINButton: UIKit.UIButton!
-  @_Concurrency.MainActor(unsafe) public var forgotPINButton: UIKit.UIButton!
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class BasePINInputViewController : CircleProgrammableWalletSDK.BaseViewController {
+  @_Concurrency.MainActor(unsafe) public var titleStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var titleLabelsStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var titleLabel1: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var titleLabel2: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var subtitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var errorMessageLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var showPINButton: UIKit.UIButton
+  @_Concurrency.MainActor(unsafe) public var forgotPINButton: UIKit.UIButton
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
-  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
 extension CircleProgrammableWalletSDK.BasePINInputViewController : UIKit.UITextFieldDelegate {
   @_Concurrency.MainActor(unsafe) @objc dynamic public func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
   @objc @_Concurrency.MainActor(unsafe) dynamic public func textFieldDidChange(_ textField: UIKit.UITextField)
 }
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class BaseViewController : UIKit.UIViewController, UIKit.UIGestureRecognizerDelegate {
-  @_Concurrency.MainActor(unsafe) public var baseNaviTitleLabel: UIKit.UILabel!
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class BaseViewController : UIKit.UIViewController, UIKit.UIGestureRecognizerDelegate {
+  @_Concurrency.MainActor(unsafe) public var baseNaviTitleLabel: UIKit.UILabel
   @objc deinit
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidAppear(_ animated: Swift.Bool)
   @_Concurrency.MainActor(unsafe) @objc public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIKit.UIGestureRecognizer) -> Swift.Bool
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
-  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
 }
 public enum ChallengeStatus : Swift.String, Swift.Decodable {
   case UNKNOWN
@@ -1518,15 +1514,15 @@ public enum RandomError : Swift.Error {
   }
 }
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class RecoverPINCodeTableViewCell : UIKit.UITableViewCell {
-  @_Concurrency.MainActor(unsafe) public var contentStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var questionHintStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var hintStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var hintTitleLabel: CircleProgrammableWalletSDK.PaddedLabel!
-  @_Concurrency.MainActor(unsafe) public var answerStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var answerTitleStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var answerTitleLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var answerMarkLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var cellBottomLineView: UIKit.UIView!
+  @_Concurrency.MainActor(unsafe) public var contentStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var questionHintStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var hintStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var hintTitleLabel: CircleProgrammableWalletSDK.PaddedLabel
+  @_Concurrency.MainActor(unsafe) public var answerStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var answerTitleStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var answerTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var answerMarkLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var cellBottomLineView: UIKit.UIView
   @objc deinit
 }
 extension CircleProgrammableWalletSDK.RecoverPINCodeTableViewCell : UIKit.UITextFieldDelegate {
@@ -1535,17 +1531,17 @@ extension CircleProgrammableWalletSDK.RecoverPINCodeTableViewCell : UIKit.UIText
   @_Concurrency.MainActor(unsafe) @objc dynamic public func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
 }
 @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class RecoverPINCodeViewController : CircleProgrammableWalletSDK.BaseViewController {
-  @_Concurrency.MainActor(unsafe) public var titleContentView: UIKit.UIView!
-  @_Concurrency.MainActor(unsafe) public var titleContentStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var titleLabelsStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var titleLabel1: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var titleLabel2: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var errorMessageView: UIKit.UIView!
-  @_Concurrency.MainActor(unsafe) public var errorImageView: UIKit.UIImageView!
-  @_Concurrency.MainActor(unsafe) public var errorMessageLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView!
-  @_Concurrency.MainActor(unsafe) public var confirmButtonBgView: UIKit.UIView!
-  @_Concurrency.MainActor(unsafe) public var confirmButton: UIKit.UIButton!
+  @_Concurrency.MainActor(unsafe) public var titleContentView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) public var titleContentStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var titleLabelsStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var titleLabel1: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var titleLabel2: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var errorMessageView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) public var errorImageView: UIKit.UIImageView
+  @_Concurrency.MainActor(unsafe) public var errorMessageLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView
+  @_Concurrency.MainActor(unsafe) public var confirmButtonBgView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) public var confirmButton: UIKit.UIButton
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLayoutSubviews()
   @objc deinit
@@ -1558,36 +1554,36 @@ public struct SecurityConfirmItem {
   public init(image: UIKit.UIImage? = nil, url: Foundation.URL? = nil, text: Swift.String)
 }
 @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class SecurityConfirmViewController : CircleProgrammableWalletSDK.BaseViewController {
-  @_Concurrency.MainActor(unsafe) public var scrollView: UIKit.UIScrollView!
-  @_Concurrency.MainActor(unsafe) public var scrollStackViewContainer: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var imageBgView: UIKit.UIView!
-  @_Concurrency.MainActor(unsafe) public var imageView: UIKit.UIImageView!
-  @_Concurrency.MainActor(unsafe) public var tipsStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var tipsTitleLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var agreeStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var agreeTitleLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var agreeTextField: CircleProgrammableWalletSDK.PaddedTextField!
-  @_Concurrency.MainActor(unsafe) public var continueButton: UIKit.UIButton!
+  @_Concurrency.MainActor(unsafe) public var scrollView: UIKit.UIScrollView
+  @_Concurrency.MainActor(unsafe) public var scrollStackViewContainer: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var imageBgView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) public var imageView: UIKit.UIImageView
+  @_Concurrency.MainActor(unsafe) public var tipsStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var tipsTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var agreeStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var agreeTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var agreeTextField: CircleProgrammableWalletSDK.PaddedTextField
+  @_Concurrency.MainActor(unsafe) public var continueButton: UIKit.UIButton
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
   @objc deinit
 }
 extension CircleProgrammableWalletSDK.SecurityConfirmViewController : UIKit.UITextFieldDelegate {
   @_Concurrency.MainActor(unsafe) @objc dynamic public func textFieldDidBeginEditing(_ textField: UIKit.UITextField)
   @_Concurrency.MainActor(unsafe) @objc dynamic public func textFieldDidEndEditing(_ textField: UIKit.UITextField, reason: UIKit.UITextField.DidEndEditingReason)
 }
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class SecurityIntrosViewController : CircleProgrammableWalletSDK.BaseViewController {
-  @_Concurrency.MainActor(unsafe) public var introImageView: UIKit.UIImageView!
-  @_Concurrency.MainActor(unsafe) public var titleStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var titleLabel1: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var titleLabel2: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var introsStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var introDescLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var introLinkButton: UIKit.UIButton!
-  @_Concurrency.MainActor(unsafe) public var continueButton: UIKit.UIButton!
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class SecurityIntrosViewController : CircleProgrammableWalletSDK.BaseViewController {
+  @_Concurrency.MainActor(unsafe) public var introImageView: UIKit.UIImageView
+  @_Concurrency.MainActor(unsafe) public var titleStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var titleLabel1: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var titleLabel2: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var introsStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var introDescLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var introLinkButton: UIKit.UIButton
+  @_Concurrency.MainActor(unsafe) public var continueButton: UIKit.UIButton
   @_Concurrency.MainActor(unsafe) public var introLink: Swift.String
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
-  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
 public struct SecurityQuestion : Swift.Equatable {
@@ -1603,13 +1599,11 @@ public struct SecurityQuestion : Swift.Equatable {
   public init(title: Swift.String, inputType: CircleProgrammableWalletSDK.SecurityQuestion.InputType)
   public static func == (a: CircleProgrammableWalletSDK.SecurityQuestion, b: CircleProgrammableWalletSDK.SecurityQuestion) -> Swift.Bool
 }
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class SecurityQuestionsViewController : CircleProgrammableWalletSDK.BaseViewController {
-  @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView!
-  @_Concurrency.MainActor(unsafe) public var nextButtonBgView: UIKit.UIView!
-  @_Concurrency.MainActor(unsafe) public var nextButton: UIKit.UIButton!
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class SecurityQuestionsViewController : CircleProgrammableWalletSDK.BaseViewController {
+  @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView
+  @_Concurrency.MainActor(unsafe) public var nextButtonBgView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) public var nextButton: UIKit.UIButton
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
-  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
 extension CircleProgrammableWalletSDK.SecurityQuestionsViewController : UIKit.UITableViewDataSource {
@@ -1617,21 +1611,21 @@ extension CircleProgrammableWalletSDK.SecurityQuestionsViewController : UIKit.UI
   @_Concurrency.MainActor(unsafe) @objc dynamic public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
 }
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class SecurityQuestionTableViewCell : UIKit.UITableViewCell {
-  @_Concurrency.MainActor(unsafe) public var contentStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var questionStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var questionTitleStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var questionTitleLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var questionMarkLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var questionView: UIKit.UIView!
-  @_Concurrency.MainActor(unsafe) public var questionTrailingButton: UIKit.UIButton!
-  @_Concurrency.MainActor(unsafe) public var answerStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var answerTitleStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var answerTitleLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var answerMarkLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var hintStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var hintTitleLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var hintWarningLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var cellBottomLineView: UIKit.UIView!
+  @_Concurrency.MainActor(unsafe) public var contentStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var questionStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var questionTitleStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var questionTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var questionMarkLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var questionView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) public var questionTrailingButton: UIKit.UIButton
+  @_Concurrency.MainActor(unsafe) public var answerStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var answerTitleStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var answerTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var answerMarkLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var hintStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var hintTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var hintWarningLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var cellBottomLineView: UIKit.UIView
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
   @objc deinit
 }
@@ -1640,18 +1634,18 @@ extension CircleProgrammableWalletSDK.SecurityQuestionTableViewCell : UIKit.UITe
   @_Concurrency.MainActor(unsafe) @objc dynamic public func textFieldDidEndEditing(_ textField: UIKit.UITextField, reason: UIKit.UITextField.DidEndEditingReason)
 }
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class SecuritySummaryTableViewCell : UIKit.UITableViewCell {
-  @_Concurrency.MainActor(unsafe) public var containerView: UIKit.UIView!
-  @_Concurrency.MainActor(unsafe) public var titleLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var contentStackView: UIKit.UIStackView!
-  @_Concurrency.MainActor(unsafe) public var questionTitleLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var answerTitleLabel: UIKit.UILabel!
-  @_Concurrency.MainActor(unsafe) public var hintTitleLabel: UIKit.UILabel!
+  @_Concurrency.MainActor(unsafe) public var containerView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) public var titleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var contentStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) public var questionTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var answerTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) public var hintTitleLabel: UIKit.UILabel
   @objc deinit
 }
 @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class SecuritySummaryViewController : CircleProgrammableWalletSDK.BaseViewController {
-  @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView!
-  @_Concurrency.MainActor(unsafe) public var continueButtonBgView: UIKit.UIView!
-  @_Concurrency.MainActor(unsafe) public var continueButton: UIKit.UIButton!
+  @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView
+  @_Concurrency.MainActor(unsafe) public var continueButtonBgView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) public var continueButton: UIKit.UIButton
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
   @objc deinit
 }
@@ -1660,9 +1654,11 @@ extension CircleProgrammableWalletSDK.SecuritySummaryViewController : UIKit.UITa
   @_Concurrency.MainActor(unsafe) @objc dynamic public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
 }
 @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class SelectQuestionViewController : CircleProgrammableWalletSDK.BaseViewController {
-  @_Concurrency.MainActor(unsafe) public var dividerView: UIKit.UIView!
-  @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView!
+  @_Concurrency.MainActor(unsafe) public var dividerView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func observeValue(forKeyPath keyPath: Swift.String?, of object: Any?, change: [Foundation.NSKeyValueChangeKey : Any]?, context: Swift.UnsafeMutableRawPointer?)
   @objc deinit
 }
