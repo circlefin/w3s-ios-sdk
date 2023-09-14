@@ -14,11 +14,11 @@
 		</data>
 		<key>CircleProgrammableWalletSDKBundle.bundle/Info.plist</key>
 		<data>
-		TPfb1QskppwMq9P9QxW2EJB++s8=
+		Y5PYKM0GdTAtAtPsk5e5pmuOZOM=
 		</data>
 		<key>CircleProgrammableWalletSDKBundle.bundle/_CodeSignature/CodeDirectory</key>
 		<data>
-		LPM5OGvWS/AzLdZivbljFp8QUuw=
+		KGB/ImIFUdTgt8TGaWBCpMOI3lM=
 		</data>
 		<key>CircleProgrammableWalletSDKBundle.bundle/_CodeSignature/CodeRequirements</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>CircleProgrammableWalletSDKBundle.bundle/_CodeSignature/CodeRequirements-1</key>
 		<data>
-		0kEDXBVClGi3qmAZOTcoy6b4RUU=
+		efX34SfXgSGREngkQNbgriPCsng=
 		</data>
 		<key>CircleProgrammableWalletSDKBundle.bundle/_CodeSignature/CodeResources</key>
 		<data>
@@ -46,7 +46,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		51eXzJe63J34zKHvlbqPWfu9XLY=
+		YutKRCv2E2vq/3YJ+LRyEHE/JLY=
 		</data>
 		<key>Modules/CircleProgrammableWalletSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -121,22 +121,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			TPfb1QskppwMq9P9QxW2EJB++s8=
+			Y5PYKM0GdTAtAtPsk5e5pmuOZOM=
 			</data>
 			<key>hash2</key>
 			<data>
-			Dnn7tJHGqOPN11461BnEwCtzgBCxsEzij6CyCYY/U+E=
+			SJdqwfPfVhIORxggE6SwAeW0PjoKWKZH+IzHJPnInsE=
 			</data>
 		</dict>
 		<key>CircleProgrammableWalletSDKBundle.bundle/_CodeSignature/CodeDirectory</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			LPM5OGvWS/AzLdZivbljFp8QUuw=
+			KGB/ImIFUdTgt8TGaWBCpMOI3lM=
 			</data>
 			<key>hash2</key>
 			<data>
-			Tz5W6I05xx5NISsRLNa8auD6F/N4oa4US1odGRyLkWM=
+			vNY1rkCMaHKY7va/9z7Oedg3CEusreiCxvXzSPZ91NY=
 			</data>
 		</dict>
 		<key>CircleProgrammableWalletSDKBundle.bundle/_CodeSignature/CodeRequirements</key>
@@ -154,11 +154,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			0kEDXBVClGi3qmAZOTcoy6b4RUU=
+			efX34SfXgSGREngkQNbgriPCsng=
 			</data>
 			<key>hash2</key>
 			<data>
-			r61snumf01+7tFkag4IHuLmvHLgYGQUcMgMlqrOx0Po=
+			syToIsL6bcWLAfrk3NSJ9mbIBJBCX9ag3gq8V/FPm6A=
 			</data>
 		</dict>
 		<key>CircleProgrammableWalletSDKBundle.bundle/_CodeSignature/CodeResources</key>
