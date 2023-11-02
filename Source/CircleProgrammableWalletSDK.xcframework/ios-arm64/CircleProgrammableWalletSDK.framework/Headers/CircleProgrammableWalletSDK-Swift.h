@@ -232,6 +232,7 @@ using UInt = size_t;
 #endif
 @import CoreFoundation;
 @import Foundation;
+@import LocalAuthentication;
 @import UIKit;
 #endif
 
@@ -290,6 +291,14 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK26BasePINInputViewController")
 
 
 
+SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK30BiometricsPromptViewController")
+@interface BiometricsPromptViewController : BaseViewController
+- (void)viewDidLoad;
+@end
+
+
+
+
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28ConfirmPINCodeViewController")
 @interface ConfirmPINCodeViewController : BasePINInputViewController
@@ -307,12 +316,16 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28ConfirmPINCodeViewController")
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK26EnterPINCodeViewController")
 @interface EnterPINCodeViewController : BasePINInputViewController
 - (void)viewDidLoad;
+- (void)viewWillAppear:(BOOL)animated;
+- (void)viewDidAppear:(BOOL)animated;
+- (void)viewWillDisappear:(BOOL)animated;
 @end
 
 
 @interface EnterPINCodeViewController (SWIFT_EXTENSION(CircleProgrammableWalletSDK))
 - (void)textFieldDidChange:(UITextField * _Nonnull)textField;
 @end
+
 
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK15PaddedTextField")
@@ -336,14 +349,8 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK14InputTextField")
 @end
 
 
-SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK16LayoutConstraint")
-@interface LayoutConstraint : NSLayoutConstraint
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-@interface LayoutConstraint (SWIFT_EXTENSION(CircleProgrammableWalletSDK))
-@property (nonatomic, readonly, copy) NSString * _Nonnull description;
+@interface LAContext (SWIFT_EXTENSION(CircleProgrammableWalletSDK))
+- (LABiometryType)getBiometricType SWIFT_WARN_UNUSED_RESULT;
 @end
 
 
@@ -419,6 +426,7 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK29SecurityConfirmViewController")
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28SecurityIntrosViewController")
 @interface SecurityIntrosViewController : BaseViewController
 - (void)viewDidLoad;
+- (void)viewWillAppear:(BOOL)animated;
 @end
 
 
@@ -487,11 +495,6 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28SelectQuestionViewController")
 - (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
 - (void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 @end
-
-
-
-
-
 
 
 
