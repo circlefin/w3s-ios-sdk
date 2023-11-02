@@ -224,6 +224,7 @@ public struct ExecuteResult {
     get
   }
   public struct ExecuteResultData : Swift.Decodable {
+    public let signature: Swift.String?
     public init(from decoder: Swift.Decoder) throws
   }
 }
@@ -541,6 +542,7 @@ extension CircleProgrammableWalletSDK.ThemeConfig {
 }
 @_hasMissingDesignatedInitializers public class WalletSdk {
   public static let shared: CircleProgrammableWalletSDK.WalletSdk
+  public var customUserAgent: Swift.String?
   public struct Configuration {
     public init(endPoint: Swift.String, appId: Swift.String, settingsManagement: CircleProgrammableWalletSDK.WalletSdk.SettingsManagement = .init())
   }
