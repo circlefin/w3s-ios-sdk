@@ -5,10 +5,13 @@
 import Alamofire
 @_exported import CircleProgrammableWalletSDK
 import CryptoKit
+import DeviceKit
 import Foundation
 import IQKeyboardManagerSwift
+import LocalAuthentication
 import SDWebImage
 import Security
+import SnapKit
 import Swift
 import UIKit
 import _Concurrency
@@ -89,6 +92,15 @@ extension CircleProgrammableWalletSDK.ApiError {
     case insecurePinCode
     case hintsMatchAnswers
     case networkError
+    case biometricsSettingNotEnabled
+    case deviceNotSupportBiometrics
+    case biometricsKeyPermanentlyInvalidated
+    case biometricsUserSkip
+    case biometricsUserDisableForPin
+    case biometricsUserLockout
+    case biometricsUserLockoutPermanent
+    case biometricsUserNotAllowPermission
+    case biometricsInternalError
     public var description: Swift.String {
       get
     }
@@ -107,7 +119,9 @@ extension CircleProgrammableWalletSDK.ApiError {
   @_Concurrency.MainActor(unsafe) public var subtitleLabel: UIKit.UILabel
   @_Concurrency.MainActor(unsafe) public var errorMessageLabel: UIKit.UILabel
   @_Concurrency.MainActor(unsafe) public var showPINButton: UIKit.UIButton
+  @_Concurrency.MainActor(unsafe) public var buttonsStackView: UIKit.UIStackView
   @_Concurrency.MainActor(unsafe) public var forgotPINButton: UIKit.UIButton
+  @_Concurrency.MainActor(unsafe) public var biometricsButton: UIKit.UIButton
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
@@ -124,6 +138,21 @@ extension CircleProgrammableWalletSDK.BasePINInputViewController : UIKit.UITextF
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidAppear(_ animated: Swift.Bool)
   @_Concurrency.MainActor(unsafe) @objc public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIKit.UIGestureRecognizer) -> Swift.Bool
+}
+extension LocalAuthentication.LAContext {
+  @objc dynamic open func getBiometricType() -> LocalAuthentication.LABiometryType
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class BiometricsPromptViewController : CircleProgrammableWalletSDK.BaseViewController {
+  @_Concurrency.MainActor(unsafe) final public var imageView: UIKit.UIImageView
+  @_Concurrency.MainActor(unsafe) final public var promptStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var promptTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var promptSubtitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var buttonStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var continueButton: UIKit.UIButton
+  @_Concurrency.MainActor(unsafe) final public var skipButton: UIKit.UIButton
+  @_Concurrency.MainActor(unsafe) final public var dontAskButton: UIKit.UIButton
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewDidLoad()
+  @objc deinit
 }
 public enum ChallengeStatus : Swift.String, Swift.Decodable {
   case UNKNOWN
@@ -145,11 +174,14 @@ public enum ChallengeType : Swift.String, Swift.Decodable {
   case CHANGE_PIN
   case RESTORE_PIN
   case SET_SECURITY_QUESTIONS
+  case SET_BIOMETRICS_PIN
   case CREATE_WALLET
   case CREATE_TRANSACTION
   case ACCELERATE_TRANSACTION
   case CANCEL_TRANSACTION
   case CONTRACT_EXECUTION
+  case SIGN_MESSAGE
+  case SIGN_TYPEDDATA
   public init(from decoder: Swift.Decoder) throws
   public init?(rawValue: Swift.String)
   public typealias RawValue = Swift.String
@@ -157,1270 +189,23 @@ public enum ChallengeType : Swift.String, Swift.Decodable {
     get
   }
 }
-@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class ConfirmPINCodeViewController : CircleProgrammableWalletSDK.BasePINInputViewController {
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class ConfirmPINCodeViewController : CircleProgrammableWalletSDK.BasePINInputViewController {
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewWillDisappear(_ animated: Swift.Bool)
   @objc deinit
 }
 extension CircleProgrammableWalletSDK.ConfirmPINCodeViewController {
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func textFieldDidChange(_ textField: UIKit.UITextField)
-}
-@_hasMissingDesignatedInitializers final public class Constraint {
-  final public var layoutConstraints: [CircleProgrammableWalletSDK.LayoutConstraint]
-  final public var isActive: Swift.Bool {
-    get
-    set
-  }
-  @available(*, deprecated, renamed: "activate()")
-  final public func install()
-  @available(*, deprecated, renamed: "deactivate()")
-  final public func uninstall()
-  final public func activate()
-  final public func deactivate()
-  @discardableResult
-  final public func update(offset: CircleProgrammableWalletSDK.ConstraintOffsetTarget) -> CircleProgrammableWalletSDK.Constraint
-  @discardableResult
-  final public func update(inset: CircleProgrammableWalletSDK.ConstraintInsetTarget) -> CircleProgrammableWalletSDK.Constraint
-  @available(iOS 11.0, tvOS 11.0, *)
-  @discardableResult
-  final public func update(inset: CircleProgrammableWalletSDK.ConstraintDirectionalInsetTarget) -> CircleProgrammableWalletSDK.Constraint
-  @discardableResult
-  final public func update(priority: CircleProgrammableWalletSDK.ConstraintPriorityTarget) -> CircleProgrammableWalletSDK.Constraint
-  @discardableResult
-  final public func update(priority: CircleProgrammableWalletSDK.ConstraintPriority) -> CircleProgrammableWalletSDK.Constraint
-  @available(*, deprecated, renamed: "update(offset:)")
-  final public func updateOffset(amount: CircleProgrammableWalletSDK.ConstraintOffsetTarget)
-  @available(*, deprecated, renamed: "update(inset:)")
-  final public func updateInsets(amount: CircleProgrammableWalletSDK.ConstraintInsetTarget)
-  @available(*, deprecated, renamed: "update(priority:)")
-  final public func updatePriority(amount: CircleProgrammableWalletSDK.ConstraintPriorityTarget)
-  @available(*, deprecated, message: "Use update(priority: ConstraintPriorityTarget) instead.")
-  final public func updatePriorityRequired()
-  @available(*, deprecated, message: "Use update(priority: ConstraintPriorityTarget) instead.")
-  final public func updatePriorityHigh()
-  @available(*, deprecated, message: "Use update(priority: ConstraintPriorityTarget) instead.")
-  final public func updatePriorityMedium()
-  @available(*, deprecated, message: "Use update(priority: ConstraintPriorityTarget) instead.")
-  final public func updatePriorityLow()
-  @objc deinit
-}
-public typealias ConstraintInterfaceLayoutDirection = UIKit.UIUserInterfaceLayoutDirection
-public struct ConstraintConfig {
-  public static var interfaceLayoutDirection: CircleProgrammableWalletSDK.ConstraintInterfaceLayoutDirection
-}
-public protocol ConstraintConstantTarget {
-}
-extension CoreFoundation.CGPoint : CircleProgrammableWalletSDK.ConstraintConstantTarget {
-}
-extension CoreFoundation.CGSize : CircleProgrammableWalletSDK.ConstraintConstantTarget {
-}
-extension UIKit.UIEdgeInsets : CircleProgrammableWalletSDK.ConstraintConstantTarget {
-}
-@available(iOS 11.0, tvOS 11.0, *)
-extension UIKit.NSDirectionalEdgeInsets : CircleProgrammableWalletSDK.ConstraintConstantTarget {
-}
-@_hasMissingDesignatedInitializers public class ConstraintDescription {
-  @objc deinit
-}
-@available(iOS 11.0, tvOS 11.0, *)
-public typealias ConstraintDirectionalInsets = UIKit.NSDirectionalEdgeInsets
-public protocol ConstraintDirectionalInsetTarget : CircleProgrammableWalletSDK.ConstraintConstantTarget {
-}
-@available(iOS 11.0, tvOS 11.0, *)
-extension UIKit.NSDirectionalEdgeInsets : CircleProgrammableWalletSDK.ConstraintDirectionalInsetTarget {
-}
-public protocol ConstraintDSL {
-  var target: Swift.AnyObject? { get }
-  func setLabel(_ value: Swift.String?)
-  func label() -> Swift.String?
-}
-extension CircleProgrammableWalletSDK.ConstraintDSL {
-  public func setLabel(_ value: Swift.String?)
-  public func label() -> Swift.String?
-}
-public protocol ConstraintBasicAttributesDSL : CircleProgrammableWalletSDK.ConstraintDSL {
-}
-extension CircleProgrammableWalletSDK.ConstraintBasicAttributesDSL {
-  public var left: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var top: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var right: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var bottom: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var leading: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var trailing: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var width: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var height: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var centerX: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var centerY: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var edges: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var directionalEdges: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var horizontalEdges: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var verticalEdges: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var directionalHorizontalEdges: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var directionalVerticalEdges: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var size: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var center: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-}
-public protocol ConstraintAttributesDSL : CircleProgrammableWalletSDK.ConstraintBasicAttributesDSL {
-}
-extension CircleProgrammableWalletSDK.ConstraintAttributesDSL {
-  @available(*, deprecated, renamed: "lastBaseline")
-  public var baseline: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, macOS 10.11, *)
-  public var lastBaseline: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, macOS 10.11, *)
-  public var firstBaseline: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var leftMargin: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var topMargin: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var rightMargin: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var bottomMargin: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var leadingMargin: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var trailingMargin: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var centerXWithinMargins: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var centerYWithinMargins: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var margins: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var directionalMargins: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var centerWithinMargins: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-}
-public typealias ConstraintInsets = UIKit.UIEdgeInsets
-public protocol ConstraintInsetTarget : CircleProgrammableWalletSDK.ConstraintConstantTarget {
-}
-extension Swift.Int : CircleProgrammableWalletSDK.ConstraintInsetTarget {
-}
-extension Swift.UInt : CircleProgrammableWalletSDK.ConstraintInsetTarget {
-}
-extension Swift.Float : CircleProgrammableWalletSDK.ConstraintInsetTarget {
-}
-extension Swift.Double : CircleProgrammableWalletSDK.ConstraintInsetTarget {
-}
-extension CoreFoundation.CGFloat : CircleProgrammableWalletSDK.ConstraintInsetTarget {
-}
-extension UIKit.UIEdgeInsets : CircleProgrammableWalletSDK.ConstraintInsetTarget {
-}
-@_hasMissingDesignatedInitializers final public class ConstraintItem {
-  @objc deinit
-}
-public func == (lhs: CircleProgrammableWalletSDK.ConstraintItem, rhs: CircleProgrammableWalletSDK.ConstraintItem) -> Swift.Bool
-@available(iOS 9.0, macOS 10.11, *)
-extension UIKit.UILayoutGuide {
-  @_Concurrency.MainActor(unsafe) public var snp: CircleProgrammableWalletSDK.ConstraintLayoutGuideDSL {
-    get
-  }
-}
-@available(iOS 9.0, *)
-public typealias ConstraintLayoutGuide = UIKit.UILayoutGuide
-@available(iOS 9.0, macOS 10.11, *)
-public struct ConstraintLayoutGuideDSL : CircleProgrammableWalletSDK.ConstraintAttributesDSL {
-  @discardableResult
-  public func prepareConstraints(_ closure: (_ make: CircleProgrammableWalletSDK.ConstraintMaker) -> Swift.Void) -> [CircleProgrammableWalletSDK.Constraint]
-  public func makeConstraints(_ closure: (_ make: CircleProgrammableWalletSDK.ConstraintMaker) -> Swift.Void)
-  public func remakeConstraints(_ closure: (_ make: CircleProgrammableWalletSDK.ConstraintMaker) -> Swift.Void)
-  public func updateConstraints(_ closure: (_ make: CircleProgrammableWalletSDK.ConstraintMaker) -> Swift.Void)
-  public func removeConstraints()
-  public var target: Swift.AnyObject? {
-    get
-  }
-}
-@available(iOS 8.0, *)
-public typealias ConstraintLayoutSupport = UIKit.UILayoutSupport
-@available(iOS 8.0, *)
-public struct ConstraintLayoutSupportDSL : CircleProgrammableWalletSDK.ConstraintDSL {
-  public var target: Swift.AnyObject? {
-    get
-  }
-  public var top: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var bottom: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  public var height: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-}
-@_hasMissingDesignatedInitializers public class ConstraintMaker {
-  public var left: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var top: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var bottom: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var right: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var leading: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var trailing: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var width: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var height: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var centerX: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var centerY: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(*, deprecated, renamed: "lastBaseline")
-  public var baseline: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var lastBaseline: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, macOS 10.11, *)
-  public var firstBaseline: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var leftMargin: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var rightMargin: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var topMargin: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var bottomMargin: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var leadingMargin: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var trailingMargin: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var centerXWithinMargins: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var centerYWithinMargins: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var edges: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var horizontalEdges: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var verticalEdges: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var directionalEdges: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var directionalHorizontalEdges: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var directionalVerticalEdges: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var size: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var center: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var margins: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var directionalMargins: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var centerWithinMargins: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  final public let item: CircleProgrammableWalletSDK.LayoutConstraintItem
-  @objc deinit
-}
-@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ConstraintMakerEditable : CircleProgrammableWalletSDK.ConstraintMakerPrioritizable {
-  @discardableResult
-  public func multipliedBy(_ amount: CircleProgrammableWalletSDK.ConstraintMultiplierTarget) -> CircleProgrammableWalletSDK.ConstraintMakerEditable
-  @discardableResult
-  public func dividedBy(_ amount: CircleProgrammableWalletSDK.ConstraintMultiplierTarget) -> CircleProgrammableWalletSDK.ConstraintMakerEditable
-  @discardableResult
-  public func offset(_ amount: CircleProgrammableWalletSDK.ConstraintOffsetTarget) -> CircleProgrammableWalletSDK.ConstraintMakerEditable
-  @discardableResult
-  public func inset(_ amount: CircleProgrammableWalletSDK.ConstraintInsetTarget) -> CircleProgrammableWalletSDK.ConstraintMakerEditable
-  @available(iOS 11.0, tvOS 11.0, *)
-  @discardableResult
-  public func inset(_ amount: CircleProgrammableWalletSDK.ConstraintDirectionalInsetTarget) -> CircleProgrammableWalletSDK.ConstraintMakerEditable
-  @objc deinit
-}
-@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ConstraintMakerExtendable : CircleProgrammableWalletSDK.ConstraintMakerRelatable {
-  public var left: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var top: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var bottom: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var right: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var leading: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var trailing: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var width: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var height: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var centerX: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var centerY: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(*, deprecated, renamed: "lastBaseline")
-  public var baseline: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var lastBaseline: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, macOS 10.11, *)
-  public var firstBaseline: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var leftMargin: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var rightMargin: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var topMargin: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var bottomMargin: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var leadingMargin: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var trailingMargin: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var centerXWithinMargins: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var centerYWithinMargins: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var edges: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var horizontalEdges: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var verticalEdges: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var directionalEdges: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var directionalHorizontalEdges: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var directionalVerticalEdges: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  public var size: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var margins: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var directionalMargins: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @available(iOS 8.0, *)
-  public var centerWithinMargins: CircleProgrammableWalletSDK.ConstraintMakerExtendable {
-    get
-  }
-  @objc deinit
-}
-@_hasMissingDesignatedInitializers public class ConstraintMakerFinalizable {
-  @discardableResult
-  public func labeled(_ label: Swift.String) -> CircleProgrammableWalletSDK.ConstraintMakerFinalizable
-  public var constraint: CircleProgrammableWalletSDK.Constraint {
-    get
-  }
-  @objc deinit
-}
-@available(*, deprecated, message: "Use ConstraintMakerPrioritizable instead.")
-public typealias ConstraintMakerPriortizable = CircleProgrammableWalletSDK.ConstraintMakerPrioritizable
-@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ConstraintMakerPrioritizable : CircleProgrammableWalletSDK.ConstraintMakerFinalizable {
-  @discardableResult
-  public func priority(_ amount: CircleProgrammableWalletSDK.ConstraintPriority) -> CircleProgrammableWalletSDK.ConstraintMakerFinalizable
-  @discardableResult
-  public func priority(_ amount: CircleProgrammableWalletSDK.ConstraintPriorityTarget) -> CircleProgrammableWalletSDK.ConstraintMakerFinalizable
-  @available(*, deprecated, message: "Use priority(.required) instead.")
-  @discardableResult
-  public func priorityRequired() -> CircleProgrammableWalletSDK.ConstraintMakerFinalizable
-  @available(*, deprecated, message: "Use priority(.high) instead.")
-  @discardableResult
-  public func priorityHigh() -> CircleProgrammableWalletSDK.ConstraintMakerFinalizable
-  @available(*, deprecated, message: "Use priority(.medium) instead.")
-  @discardableResult
-  public func priorityMedium() -> CircleProgrammableWalletSDK.ConstraintMakerFinalizable
-  @available(*, deprecated, message: "Use priority(.low) instead.")
-  @discardableResult
-  public func priorityLow() -> CircleProgrammableWalletSDK.ConstraintMakerFinalizable
-  @objc deinit
-}
-extension CircleProgrammableWalletSDK.ConstraintMakerRelatable {
-  @discardableResult
-  public func equalToSuperview<T>(_ closure: (CircleProgrammableWalletSDK.ConstraintView) -> T, _ file: Swift.String = #file, line: Swift.UInt = #line) -> CircleProgrammableWalletSDK.ConstraintMakerEditable where T : CircleProgrammableWalletSDK.ConstraintRelatableTarget
-  @discardableResult
-  public func lessThanOrEqualToSuperview<T>(_ closure: (CircleProgrammableWalletSDK.ConstraintView) -> T, _ file: Swift.String = #file, line: Swift.UInt = #line) -> CircleProgrammableWalletSDK.ConstraintMakerEditable where T : CircleProgrammableWalletSDK.ConstraintRelatableTarget
-  @discardableResult
-  public func greaterThanOrEqualTo<T>(_ closure: (CircleProgrammableWalletSDK.ConstraintView) -> T, _ file: Swift.String = #file, line: Swift.UInt = #line) -> CircleProgrammableWalletSDK.ConstraintMakerEditable where T : CircleProgrammableWalletSDK.ConstraintRelatableTarget
-}
-@_hasMissingDesignatedInitializers public class ConstraintMakerRelatable {
-  @discardableResult
-  public func equalTo(_ other: CircleProgrammableWalletSDK.ConstraintRelatableTarget, _ file: Swift.String = #file, _ line: Swift.UInt = #line) -> CircleProgrammableWalletSDK.ConstraintMakerEditable
-  @discardableResult
-  public func equalToSuperview(_ file: Swift.String = #file, _ line: Swift.UInt = #line) -> CircleProgrammableWalletSDK.ConstraintMakerEditable
-  @discardableResult
-  public func lessThanOrEqualTo(_ other: CircleProgrammableWalletSDK.ConstraintRelatableTarget, _ file: Swift.String = #file, _ line: Swift.UInt = #line) -> CircleProgrammableWalletSDK.ConstraintMakerEditable
-  @discardableResult
-  public func lessThanOrEqualToSuperview(_ file: Swift.String = #file, _ line: Swift.UInt = #line) -> CircleProgrammableWalletSDK.ConstraintMakerEditable
-  @discardableResult
-  public func greaterThanOrEqualTo(_ other: CircleProgrammableWalletSDK.ConstraintRelatableTarget, _ file: Swift.String = #file, line: Swift.UInt = #line) -> CircleProgrammableWalletSDK.ConstraintMakerEditable
-  @discardableResult
-  public func greaterThanOrEqualToSuperview(_ file: Swift.String = #file, line: Swift.UInt = #line) -> CircleProgrammableWalletSDK.ConstraintMakerEditable
-  @objc deinit
-}
-public protocol ConstraintMultiplierTarget {
-  var constraintMultiplierTargetValue: CoreFoundation.CGFloat { get }
-}
-extension Swift.Int : CircleProgrammableWalletSDK.ConstraintMultiplierTarget {
-  public var constraintMultiplierTargetValue: CoreFoundation.CGFloat {
-    get
-  }
-}
-extension Swift.UInt : CircleProgrammableWalletSDK.ConstraintMultiplierTarget {
-  public var constraintMultiplierTargetValue: CoreFoundation.CGFloat {
-    get
-  }
-}
-extension Swift.Float : CircleProgrammableWalletSDK.ConstraintMultiplierTarget {
-  public var constraintMultiplierTargetValue: CoreFoundation.CGFloat {
-    get
-  }
-}
-extension Swift.Double : CircleProgrammableWalletSDK.ConstraintMultiplierTarget {
-  public var constraintMultiplierTargetValue: CoreFoundation.CGFloat {
-    get
-  }
-}
-extension CoreFoundation.CGFloat : CircleProgrammableWalletSDK.ConstraintMultiplierTarget {
-  public var constraintMultiplierTargetValue: CoreFoundation.CGFloat {
-    get
-  }
-}
-public protocol ConstraintOffsetTarget : CircleProgrammableWalletSDK.ConstraintConstantTarget {
-}
-extension Swift.Int : CircleProgrammableWalletSDK.ConstraintOffsetTarget {
-}
-extension Swift.UInt : CircleProgrammableWalletSDK.ConstraintOffsetTarget {
-}
-extension Swift.Float : CircleProgrammableWalletSDK.ConstraintOffsetTarget {
-}
-extension Swift.Double : CircleProgrammableWalletSDK.ConstraintOffsetTarget {
-}
-extension CoreFoundation.CGFloat : CircleProgrammableWalletSDK.ConstraintOffsetTarget {
-}
-public struct ConstraintPriority : Swift.ExpressibleByFloatLiteral, Swift.Equatable, Swift.Strideable {
-  public typealias FloatLiteralType = Swift.Float
-  public let value: Swift.Float
-  public init(floatLiteral value: Swift.Float)
-  public init(_ value: Swift.Float)
-  public static var required: CircleProgrammableWalletSDK.ConstraintPriority {
-    get
-  }
-  public static var high: CircleProgrammableWalletSDK.ConstraintPriority {
-    get
-  }
-  public static var medium: CircleProgrammableWalletSDK.ConstraintPriority {
-    get
-  }
-  public static var low: CircleProgrammableWalletSDK.ConstraintPriority {
-    get
-  }
-  public static func == (lhs: CircleProgrammableWalletSDK.ConstraintPriority, rhs: CircleProgrammableWalletSDK.ConstraintPriority) -> Swift.Bool
-  public func advanced(by n: CircleProgrammableWalletSDK.ConstraintPriority.FloatLiteralType) -> CircleProgrammableWalletSDK.ConstraintPriority
-  public func distance(to other: CircleProgrammableWalletSDK.ConstraintPriority) -> CircleProgrammableWalletSDK.ConstraintPriority.FloatLiteralType
-  public typealias Stride = CircleProgrammableWalletSDK.ConstraintPriority.FloatLiteralType
-}
-public protocol ConstraintPriorityTarget {
-  var constraintPriorityTargetValue: Swift.Float { get }
-}
-extension Swift.Int : CircleProgrammableWalletSDK.ConstraintPriorityTarget {
-  public var constraintPriorityTargetValue: Swift.Float {
-    get
-  }
-}
-extension Swift.UInt : CircleProgrammableWalletSDK.ConstraintPriorityTarget {
-  public var constraintPriorityTargetValue: Swift.Float {
-    get
-  }
-}
-extension Swift.Float : CircleProgrammableWalletSDK.ConstraintPriorityTarget {
-  public var constraintPriorityTargetValue: Swift.Float {
-    get
-  }
-}
-extension Swift.Double : CircleProgrammableWalletSDK.ConstraintPriorityTarget {
-  public var constraintPriorityTargetValue: Swift.Float {
-    get
-  }
-}
-extension CoreFoundation.CGFloat : CircleProgrammableWalletSDK.ConstraintPriorityTarget {
-  public var constraintPriorityTargetValue: Swift.Float {
-    get
-  }
-}
-extension UIKit.UILayoutPriority : CircleProgrammableWalletSDK.ConstraintPriorityTarget {
-  public var constraintPriorityTargetValue: Swift.Float {
-    get
-  }
-}
-public protocol ConstraintRelatableTarget {
-}
-extension Swift.Int : CircleProgrammableWalletSDK.ConstraintRelatableTarget {
-}
-extension Swift.UInt : CircleProgrammableWalletSDK.ConstraintRelatableTarget {
-}
-extension Swift.Float : CircleProgrammableWalletSDK.ConstraintRelatableTarget {
-}
-extension Swift.Double : CircleProgrammableWalletSDK.ConstraintRelatableTarget {
-}
-extension CoreFoundation.CGFloat : CircleProgrammableWalletSDK.ConstraintRelatableTarget {
-}
-extension CoreFoundation.CGSize : CircleProgrammableWalletSDK.ConstraintRelatableTarget {
-}
-extension CoreFoundation.CGPoint : CircleProgrammableWalletSDK.ConstraintRelatableTarget {
-}
-extension UIKit.UIEdgeInsets : CircleProgrammableWalletSDK.ConstraintRelatableTarget {
-}
-@available(iOS 11.0, tvOS 11.0, *)
-extension UIKit.NSDirectionalEdgeInsets : CircleProgrammableWalletSDK.ConstraintRelatableTarget {
-}
-extension CircleProgrammableWalletSDK.ConstraintItem : CircleProgrammableWalletSDK.ConstraintRelatableTarget {
-}
-extension UIKit.UIView : CircleProgrammableWalletSDK.ConstraintRelatableTarget {
-}
-@available(iOS 9.0, macOS 10.11, *)
-extension UIKit.UILayoutGuide : CircleProgrammableWalletSDK.ConstraintRelatableTarget {
-}
-extension UIKit.UIView {
-  @available(*, deprecated, renamed: "snp.left")
-  @_Concurrency.MainActor(unsafe) public var snp_left: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(*, deprecated, renamed: "snp.top")
-  @_Concurrency.MainActor(unsafe) public var snp_top: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(*, deprecated, renamed: "snp.right")
-  @_Concurrency.MainActor(unsafe) public var snp_right: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(*, deprecated, renamed: "snp.bottom")
-  @_Concurrency.MainActor(unsafe) public var snp_bottom: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(*, deprecated, renamed: "snp.leading")
-  @_Concurrency.MainActor(unsafe) public var snp_leading: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(*, deprecated, renamed: "snp.trailing")
-  @_Concurrency.MainActor(unsafe) public var snp_trailing: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(*, deprecated, renamed: "snp.width")
-  @_Concurrency.MainActor(unsafe) public var snp_width: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(*, deprecated, renamed: "snp.height")
-  @_Concurrency.MainActor(unsafe) public var snp_height: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(*, deprecated, renamed: "snp.centerX")
-  @_Concurrency.MainActor(unsafe) public var snp_centerX: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(*, deprecated, renamed: "snp.centerY")
-  @_Concurrency.MainActor(unsafe) public var snp_centerY: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(*, deprecated, renamed: "snp.baseline")
-  @_Concurrency.MainActor(unsafe) public var snp_baseline: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, macOS 10.11, *)
-  @available(*, deprecated, renamed: "snp.lastBaseline")
-  @_Concurrency.MainActor(unsafe) public var snp_lastBaseline: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, macOS 10.11, *)
-  @available(iOS, deprecated, renamed: "snp.firstBaseline")
-  @_Concurrency.MainActor(unsafe) public var snp_firstBaseline: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  @available(iOS, deprecated, renamed: "snp.leftMargin")
-  @_Concurrency.MainActor(unsafe) public var snp_leftMargin: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  @available(iOS, deprecated, renamed: "snp.topMargin")
-  @_Concurrency.MainActor(unsafe) public var snp_topMargin: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  @available(iOS, deprecated, renamed: "snp.rightMargin")
-  @_Concurrency.MainActor(unsafe) public var snp_rightMargin: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  @available(iOS, deprecated, renamed: "snp.bottomMargin")
-  @_Concurrency.MainActor(unsafe) public var snp_bottomMargin: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  @available(iOS, deprecated, renamed: "snp.leadingMargin")
-  @_Concurrency.MainActor(unsafe) public var snp_leadingMargin: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  @available(iOS, deprecated, renamed: "snp.trailingMargin")
-  @_Concurrency.MainActor(unsafe) public var snp_trailingMargin: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  @available(iOS, deprecated, renamed: "snp.centerXWithinMargins")
-  @_Concurrency.MainActor(unsafe) public var snp_centerXWithinMargins: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  @available(iOS, deprecated, renamed: "snp.centerYWithinMargins")
-  @_Concurrency.MainActor(unsafe) public var snp_centerYWithinMargins: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(*, deprecated, renamed: "snp.edges")
-  @_Concurrency.MainActor(unsafe) public var snp_edges: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(*, deprecated, renamed: "snp.size")
-  @_Concurrency.MainActor(unsafe) public var snp_size: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(*, deprecated, renamed: "snp.center")
-  @_Concurrency.MainActor(unsafe) public var snp_center: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  @available(iOS, deprecated, renamed: "snp.margins")
-  @_Concurrency.MainActor(unsafe) public var snp_margins: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(iOS 8.0, *)
-  @available(iOS, deprecated, renamed: "snp.centerWithinMargins")
-  @_Concurrency.MainActor(unsafe) public var snp_centerWithinMargins: CircleProgrammableWalletSDK.ConstraintItem {
-    get
-  }
-  @available(*, deprecated, renamed: "snp.prepareConstraints(_:)")
-  @_Concurrency.MainActor(unsafe) public func snp_prepareConstraints(_ closure: (_ make: CircleProgrammableWalletSDK.ConstraintMaker) -> Swift.Void) -> [CircleProgrammableWalletSDK.Constraint]
-  @available(*, deprecated, renamed: "snp.makeConstraints(_:)")
-  @_Concurrency.MainActor(unsafe) public func snp_makeConstraints(_ closure: (_ make: CircleProgrammableWalletSDK.ConstraintMaker) -> Swift.Void)
-  @available(*, deprecated, renamed: "snp.remakeConstraints(_:)")
-  @_Concurrency.MainActor(unsafe) public func snp_remakeConstraints(_ closure: (_ make: CircleProgrammableWalletSDK.ConstraintMaker) -> Swift.Void)
-  @available(*, deprecated, renamed: "snp.updateConstraints(_:)")
-  @_Concurrency.MainActor(unsafe) public func snp_updateConstraints(_ closure: (_ make: CircleProgrammableWalletSDK.ConstraintMaker) -> Swift.Void)
-  @available(*, deprecated, renamed: "snp.removeConstraints()")
-  @_Concurrency.MainActor(unsafe) public func snp_removeConstraints()
-  @_Concurrency.MainActor(unsafe) public var snp: CircleProgrammableWalletSDK.ConstraintViewDSL {
-    get
-  }
-}
-public typealias ConstraintView = UIKit.UIView
-public struct ConstraintViewDSL : CircleProgrammableWalletSDK.ConstraintAttributesDSL {
-  @discardableResult
-  public func prepareConstraints(_ closure: (_ make: CircleProgrammableWalletSDK.ConstraintMaker) -> Swift.Void) -> [CircleProgrammableWalletSDK.Constraint]
-  public func makeConstraints(_ closure: (_ make: CircleProgrammableWalletSDK.ConstraintMaker) -> Swift.Void)
-  public func remakeConstraints(_ closure: (_ make: CircleProgrammableWalletSDK.ConstraintMaker) -> Swift.Void)
-  public func updateConstraints(_ closure: (_ make: CircleProgrammableWalletSDK.ConstraintMaker) -> Swift.Void)
-  public func removeConstraints()
-  public var contentHuggingHorizontalPriority: Swift.Float {
-    get
-    nonmutating set
-  }
-  public var contentHuggingVerticalPriority: Swift.Float {
-    get
-    nonmutating set
-  }
-  public var contentCompressionResistanceHorizontalPriority: Swift.Float {
-    get
-    nonmutating set
-  }
-  public var contentCompressionResistanceVerticalPriority: Swift.Float {
-    get
-    nonmutating set
-  }
-  public var target: Swift.AnyObject? {
-    get
-  }
-}
-extension CircleProgrammableWalletSDK.LayoutConstraint {
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public var description: Swift.String {
-    @objc get
-  }
-}
-public enum Device {
-  case iPodTouch5
-  case iPodTouch6
-  case iPodTouch7
-  case iPhone4
-  case iPhone4s
-  case iPhone5
-  case iPhone5c
-  case iPhone5s
-  case iPhone6
-  case iPhone6Plus
-  case iPhone6s
-  case iPhone6sPlus
-  case iPhone7
-  case iPhone7Plus
-  case iPhoneSE
-  case iPhone8
-  case iPhone8Plus
-  case iPhoneX
-  case iPhoneXS
-  case iPhoneXSMax
-  case iPhoneXR
-  case iPhone11
-  case iPhone11Pro
-  case iPhone11ProMax
-  case iPhoneSE2
-  case iPhone12
-  case iPhone12Mini
-  case iPhone12Pro
-  case iPhone12ProMax
-  case iPhone13
-  case iPhone13Mini
-  case iPhone13Pro
-  case iPhone13ProMax
-  case iPhoneSE3
-  case iPhone14
-  case iPhone14Plus
-  case iPhone14Pro
-  case iPhone14ProMax
-  case iPad2
-  case iPad3
-  case iPad4
-  case iPadAir
-  case iPadAir2
-  case iPad5
-  case iPad6
-  case iPadAir3
-  case iPad7
-  case iPad8
-  case iPad9
-  case iPad10
-  case iPadAir4
-  case iPadAir5
-  case iPadMini
-  case iPadMini2
-  case iPadMini3
-  case iPadMini4
-  case iPadMini5
-  case iPadMini6
-  case iPadPro9Inch
-  case iPadPro12Inch
-  case iPadPro12Inch2
-  case iPadPro10Inch
-  case iPadPro11Inch
-  case iPadPro12Inch3
-  case iPadPro11Inch2
-  case iPadPro12Inch4
-  case iPadPro11Inch3
-  case iPadPro12Inch5
-  case iPadPro11Inch4
-  case iPadPro12Inch6
-  case homePod
-  indirect case simulator(CircleProgrammableWalletSDK.Device)
-  case unknown(Swift.String)
-  public static var current: CircleProgrammableWalletSDK.Device {
-    get
-  }
-  public static var identifier: Swift.String
-  public static func mapToDevice(identifier: Swift.String) -> CircleProgrammableWalletSDK.Device
-  public static func realDevice(from device: CircleProgrammableWalletSDK.Device) -> CircleProgrammableWalletSDK.Device
-  public var diagonal: Swift.Double {
-    get
-  }
-  public var screenRatio: (width: Swift.Double, height: Swift.Double) {
-    get
-  }
-  public static var allPods: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allPhones: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allPads: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  @available(*, deprecated, renamed: "allDevicesWithSensorHousing")
-  public static var allXSeriesDevices: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allPlusSizedDevices: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allProDevices: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allMiniDevices: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allSimulatorPods: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allSimulatorPhones: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allSimulatorPads: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allSimulatorMiniDevices: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  @available(*, deprecated, renamed: "allSimulatorDevicesWithSensorHousing")
-  public static var allSimulatorXSeriesDevices: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allSimulatorPlusSizedDevices: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allSimulatorProDevices: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public var isPod: Swift.Bool {
-    get
-  }
-  public var isPhone: Swift.Bool {
-    get
-  }
-  public var isPad: Swift.Bool {
-    get
-  }
-  public var realDevice: CircleProgrammableWalletSDK.Device {
-    get
-  }
-  public var isZoomed: Swift.Bool? {
-    get
-  }
-  public static var allTouchIDCapableDevices: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allFaceIDCapableDevices: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allBiometricAuthenticationCapableDevices: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public var isTouchIDCapable: Swift.Bool {
-    get
-  }
-  public var isFaceIDCapable: Swift.Bool {
-    get
-  }
-  public var hasBiometricSensor: Swift.Bool {
-    get
-  }
-  public static var allDevicesWithSensorHousing: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allSimulatorDevicesWithSensorHousing: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public var hasSensorHousing: Swift.Bool {
-    get
-  }
-  public static var allDevicesWithRoundedDisplayCorners: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public var hasRoundedDisplayCorners: Swift.Bool {
-    get
-  }
-  public static var allDevicesWith3dTouchSupport: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public var has3dTouchSupport: Swift.Bool {
-    get
-  }
-  public static var allDevicesWithWirelessChargingSupport: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public var supportsWirelessCharging: Swift.Bool {
-    get
-  }
-  public static var allDevicesWithALidarSensor: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public var hasLidarSensor: Swift.Bool {
-    get
-  }
-  public var isCanvas: Swift.Bool? {
-    get
-  }
-  public static var allRealDevices: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allSimulators: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public var isSimulator: Swift.Bool {
-    get
-  }
-  public func isOneOf(_ devices: [CircleProgrammableWalletSDK.Device]) -> Swift.Bool
-  public var name: Swift.String? {
-    get
-  }
-  public var systemName: Swift.String? {
-    get
-  }
-  public var systemVersion: Swift.String? {
-    get
-  }
-  public var model: Swift.String? {
-    get
-  }
-  public var localizedModel: Swift.String? {
-    get
-  }
-  public var ppi: Swift.Int? {
-    get
-  }
-  public var isGuidedAccessSessionActive: Swift.Bool {
-    get
-  }
-  public var screenBrightness: Swift.Int {
-    get
-  }
-}
-extension CircleProgrammableWalletSDK.Device : Swift.CustomStringConvertible {
-  public var description: Swift.String {
-    get
-  }
-  public var safeDescription: Swift.String {
-    get
-  }
-}
-extension CircleProgrammableWalletSDK.Device : Swift.Equatable {
-  public static func == (lhs: CircleProgrammableWalletSDK.Device, rhs: CircleProgrammableWalletSDK.Device) -> Swift.Bool
-}
-@available(iOS 8.0, watchOS 4.0, *)
-extension CircleProgrammableWalletSDK.Device {
-  public enum BatteryState : Swift.CustomStringConvertible, Swift.Equatable {
-    case full
-    case charging(Swift.Int)
-    case unplugged(Swift.Int)
-    public var lowPowerMode: Swift.Bool {
-      get
-    }
-    public var description: Swift.String {
-      get
-    }
-  }
-  public var batteryState: CircleProgrammableWalletSDK.Device.BatteryState? {
-    get
-  }
-  public var batteryLevel: Swift.Int? {
-    get
-  }
-}
-@available(iOS 8.0, watchOS 4.0, *)
-extension CircleProgrammableWalletSDK.Device.BatteryState : Swift.Comparable {
-  public static func == (lhs: CircleProgrammableWalletSDK.Device.BatteryState, rhs: CircleProgrammableWalletSDK.Device.BatteryState) -> Swift.Bool
-  public static func < (lhs: CircleProgrammableWalletSDK.Device.BatteryState, rhs: CircleProgrammableWalletSDK.Device.BatteryState) -> Swift.Bool
-}
-extension CircleProgrammableWalletSDK.Device {
-  public enum Orientation {
-    case landscape
-    case portrait
-    public static func == (a: CircleProgrammableWalletSDK.Device.Orientation, b: CircleProgrammableWalletSDK.Device.Orientation) -> Swift.Bool
-    public func hash(into hasher: inout Swift.Hasher)
-    public var hashValue: Swift.Int {
-      get
-    }
-  }
-  public var orientation: CircleProgrammableWalletSDK.Device.Orientation {
-    get
-  }
-}
-extension CircleProgrammableWalletSDK.Device {
-  public static var volumeTotalCapacity: Swift.Int? {
-    get
-  }
-  public static var volumeAvailableCapacity: Swift.Int? {
-    get
-  }
-  @available(iOS 11.0, *)
-  public static var volumeAvailableCapacityForImportantUsage: Swift.Int64? {
-    get
-  }
-  @available(iOS 11.0, *)
-  public static var volumeAvailableCapacityForOpportunisticUsage: Swift.Int64? {
-    get
-  }
-  @available(iOS 11.0, *)
-  public static var volumes: [Foundation.URLResourceKey : Swift.Int64]? {
-    get
-  }
-}
-extension CircleProgrammableWalletSDK.Device {
-  public struct ApplePencilSupport : Swift.OptionSet {
-    public var rawValue: Swift.UInt
-    public init(rawValue: Swift.UInt)
-    public static let firstGeneration: CircleProgrammableWalletSDK.Device.ApplePencilSupport
-    public static let secondGeneration: CircleProgrammableWalletSDK.Device.ApplePencilSupport
-    public typealias ArrayLiteralElement = CircleProgrammableWalletSDK.Device.ApplePencilSupport
-    public typealias Element = CircleProgrammableWalletSDK.Device.ApplePencilSupport
-    public typealias RawValue = Swift.UInt
-  }
-  public static var allApplePencilCapableDevices: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public var applePencilSupport: CircleProgrammableWalletSDK.Device.ApplePencilSupport {
-    get
-  }
-}
-extension CircleProgrammableWalletSDK.Device {
-  public enum CameraType {
-    @available(*, deprecated, renamed: "wide")
-    case normal
-    case wide
-    case telephoto
-    case ultraWide
-    public static func == (a: CircleProgrammableWalletSDK.Device.CameraType, b: CircleProgrammableWalletSDK.Device.CameraType) -> Swift.Bool
-    public func hash(into hasher: inout Swift.Hasher)
-    public var hashValue: Swift.Int {
-      get
-    }
-  }
-  public var cameras: [CircleProgrammableWalletSDK.Device.CameraType] {
-    get
-  }
-  public static var allDevicesWithCamera: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  @available(*, deprecated, renamed: "allDevicesWithWideCamera")
-  public static var allDevicesWithNormalCamera: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allDevicesWithWideCamera: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allDevicesWithTelephotoCamera: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public static var allDevicesWithUltraWideCamera: [CircleProgrammableWalletSDK.Device] {
-    get
-  }
-  public var hasCamera: Swift.Bool {
-    get
-  }
-  @available(*, deprecated, renamed: "hasWideCamera")
-  public var hasNormalCamera: Swift.Bool {
-    get
-  }
-  public var hasWideCamera: Swift.Bool {
-    get
-  }
-  public var hasTelephotoCamera: Swift.Bool {
-    get
-  }
-  public var hasUltraWideCamera: Swift.Bool {
-    get
-  }
-}
-@available(iOS 11.0, watchOS 4.0, macOS 10.10.3, tvOS 11.0, *)
-extension CircleProgrammableWalletSDK.Device {
-  public enum ThermalState {
-    case nominal
-    case fair
-    case serious
-    case critical
-    public static func == (a: CircleProgrammableWalletSDK.Device.ThermalState, b: CircleProgrammableWalletSDK.Device.ThermalState) -> Swift.Bool
-    public func hash(into hasher: inout Swift.Hasher)
-    public var hashValue: Swift.Int {
-      get
-    }
-  }
-  public var thermalState: CircleProgrammableWalletSDK.Device.ThermalState? {
-    get
-  }
-}
-extension CircleProgrammableWalletSDK.Device {
-  public enum CPU : Swift.Comparable {
-    case a4
-    case a5
-    case a5X
-    case a6
-    case a6X
-    case a7
-    case a8
-    case a8X
-    case a9
-    case a9X
-    case a10Fusion
-    case a10XFusion
-    case a11Bionic
-    case a12Bionic
-    case a12XBionic
-    case a12ZBionic
-    case a13Bionic
-    case a14Bionic
-    case a15Bionic
-    case a16Bionic
-    case m1
-    case m2
-    case unknown
-    public static func == (a: CircleProgrammableWalletSDK.Device.CPU, b: CircleProgrammableWalletSDK.Device.CPU) -> Swift.Bool
-    public func hash(into hasher: inout Swift.Hasher)
-    public static func < (a: CircleProgrammableWalletSDK.Device.CPU, b: CircleProgrammableWalletSDK.Device.CPU) -> Swift.Bool
-    public var hashValue: Swift.Int {
-      get
-    }
-  }
-  public var cpu: CircleProgrammableWalletSDK.Device.CPU {
-    get
-  }
-}
-extension CircleProgrammableWalletSDK.Device.CPU : Swift.CustomStringConvertible {
-  public var description: Swift.String {
-    get
-  }
-}
-@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class EnterPINCodeViewController : CircleProgrammableWalletSDK.BasePINInputViewController {
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override final public func textFieldDidChange(_ textField: UIKit.UITextField)
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class EnterPINCodeViewController : CircleProgrammableWalletSDK.BasePINInputViewController {
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewDidAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewWillDisappear(_ animated: Swift.Bool)
   @objc deinit
 }
 extension CircleProgrammableWalletSDK.EnterPINCodeViewController {
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func textFieldDidChange(_ textField: UIKit.UITextField)
+  @_Concurrency.MainActor(unsafe) @objc override final public func textFieldDidChange(_ textField: UIKit.UITextField)
 }
 public protocol ErrorMessenger {
   func getErrorString(_ code: CircleProgrammableWalletSDK.ApiError.ErrorCode) -> Swift.String?
@@ -1430,10 +215,38 @@ public struct ExecuteCompletionStruct {
   public let challenges: [Swift.String]
   public let result: Swift.Result<CircleProgrammableWalletSDK.ExecuteResult, CircleProgrammableWalletSDK.ApiError>
   public let onErrorController: UIKit.UINavigationController?
+  public let onWarning: CircleProgrammableWalletSDK.ExecuteWarning?
 }
 public struct ExecuteResult {
   public let resultType: CircleProgrammableWalletSDK.ChallengeType
   public let status: CircleProgrammableWalletSDK.ChallengeStatus
+  public var data: CircleProgrammableWalletSDK.ExecuteResult.ExecuteResultData? {
+    get
+  }
+  public struct ExecuteResultData : Swift.Decodable {
+    public init(from decoder: Swift.Decoder) throws
+  }
+}
+public struct ExecuteWarning {
+  public let warningType: CircleProgrammableWalletSDK.ExecuteWarning.WarningType
+  public var warningString: Swift.String
+}
+extension CircleProgrammableWalletSDK.ExecuteWarning {
+  public enum WarningType : Swift.Int {
+    case deviceNotSupportBiometrics
+    case biometricsKeyPermanentlyInvalidated
+    case biometricsUserSkip
+    case biometricsUserDisableForPin
+    case biometricsUserLockout
+    case biometricsUserLockoutPermanent
+    case biometricsUserNotAllowPermission
+    case biometricsInternalError
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
 }
 public struct ImageStore {
   public enum Img {
@@ -1444,6 +257,9 @@ public struct ImageStore {
     case errorInfo
     case securityIntroMain
     case securityConfirmMain
+    case biometricsAllowMain
+    case showPin
+    case hidePin
     public static func == (a: CircleProgrammableWalletSDK.ImageStore.Img, b: CircleProgrammableWalletSDK.ImageStore.Img) -> Swift.Bool
     public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
@@ -1461,31 +277,40 @@ public struct ImageStore {
   @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
   @objc deinit
 }
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class LayoutConstraint : UIKit.NSLayoutConstraint {
-  @_Concurrency.MainActor(unsafe) public var label: Swift.String? {
+public protocol JWT {
+  var header: [Swift.String : Any] { get }
+  var body: [Swift.String : Any] { get }
+  var signature: Swift.String? { get }
+  var string: Swift.String { get }
+  var userId: Swift.String? { get }
+}
+extension CircleProgrammableWalletSDK.JWT {
+  public func claim(name: Swift.String) -> CircleProgrammableWalletSDK.Claim
+}
+public struct Claim {
+  public var string: Swift.String? {
     get
-    set
   }
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init()
-  @objc deinit
 }
-public protocol LayoutConstraintItem : AnyObject {
+public enum JWTDecodeError : Foundation.LocalizedError, Swift.CustomDebugStringConvertible, Swift.Equatable {
+  case invalidBase64URL(Swift.String)
+  case invalidJSON(Swift.String)
+  case invalidPartCount(Swift.String, Swift.Int)
+  public var debugDescription: Swift.String {
+    get
+  }
+  public static func == (a: CircleProgrammableWalletSDK.JWTDecodeError, b: CircleProgrammableWalletSDK.JWTDecodeError) -> Swift.Bool
 }
-@available(iOS 9.0, macOS 10.11, *)
-extension UIKit.UILayoutGuide : CircleProgrammableWalletSDK.LayoutConstraintItem {
-}
-extension UIKit.UIView : CircleProgrammableWalletSDK.LayoutConstraintItem {
-}
-@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class NewPINCodeViewController : CircleProgrammableWalletSDK.BasePINInputViewController {
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class NewPINCodeViewController : CircleProgrammableWalletSDK.BasePINInputViewController {
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewDidLoad()
   @objc deinit
 }
 extension CircleProgrammableWalletSDK.NewPINCodeViewController {
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func textFieldDidChange(_ textField: UIKit.UITextField)
+  @_Concurrency.MainActor(unsafe) @objc override final public func textFieldDidChange(_ textField: UIKit.UITextField)
 }
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class PaddedLabel : UIKit.UILabel {
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func drawText(in rect: CoreFoundation.CGRect)
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public var intrinsicContentSize: CoreFoundation.CGSize {
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) final public class PaddedLabel : UIKit.UILabel {
+  @_Concurrency.MainActor(unsafe) @objc override final public func drawText(in rect: CoreFoundation.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc override final public var intrinsicContentSize: CoreFoundation.CGSize {
     @objc get
   }
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
@@ -1513,77 +338,78 @@ public enum RandomError : Swift.Error {
     get
   }
 }
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class RecoverPINCodeTableViewCell : UIKit.UITableViewCell {
-  @_Concurrency.MainActor(unsafe) public var contentStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var questionHintStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var hintStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var hintTitleLabel: CircleProgrammableWalletSDK.PaddedLabel
-  @_Concurrency.MainActor(unsafe) public var answerStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var answerTitleStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var answerTitleLabel: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var answerMarkLabel: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var cellBottomLineView: UIKit.UIView
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class RecoverPINCodeTableViewCell : UIKit.UITableViewCell {
+  @_Concurrency.MainActor(unsafe) final public var contentStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var questionHintStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var hintStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var hintTitleLabel: CircleProgrammableWalletSDK.PaddedLabel
+  @_Concurrency.MainActor(unsafe) final public var answerStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var answerTitleStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var answerTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var answerMarkLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var cellBottomLineView: UIKit.UIView
   @objc deinit
 }
 extension CircleProgrammableWalletSDK.RecoverPINCodeTableViewCell : UIKit.UITextFieldDelegate {
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func textFieldDidBeginEditing(_ textField: UIKit.UITextField)
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func textFieldDidEndEditing(_ textField: UIKit.UITextField, reason: UIKit.UITextField.DidEndEditingReason)
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
+  @_Concurrency.MainActor(unsafe) @objc final public func textFieldDidBeginEditing(_ textField: UIKit.UITextField)
+  @_Concurrency.MainActor(unsafe) @objc final public func textFieldDidEndEditing(_ textField: UIKit.UITextField, reason: UIKit.UITextField.DidEndEditingReason)
+  @_Concurrency.MainActor(unsafe) @objc final public func textField(_ textField: UIKit.UITextField, shouldChangeCharactersIn range: Foundation.NSRange, replacementString string: Swift.String) -> Swift.Bool
 }
-@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class RecoverPINCodeViewController : CircleProgrammableWalletSDK.BaseViewController {
-  @_Concurrency.MainActor(unsafe) public var titleContentView: UIKit.UIView
-  @_Concurrency.MainActor(unsafe) public var titleContentStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var titleLabelsStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var titleLabel1: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var titleLabel2: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var errorMessageView: UIKit.UIView
-  @_Concurrency.MainActor(unsafe) public var errorImageView: UIKit.UIImageView
-  @_Concurrency.MainActor(unsafe) public var errorMessageLabel: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView
-  @_Concurrency.MainActor(unsafe) public var confirmButtonBgView: UIKit.UIView
-  @_Concurrency.MainActor(unsafe) public var confirmButton: UIKit.UIButton
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLayoutSubviews()
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class RecoverPINCodeViewController : CircleProgrammableWalletSDK.BaseViewController {
+  @_Concurrency.MainActor(unsafe) final public var titleContentView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) final public var titleContentStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var titleLabelsStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var titleLabel1: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var titleLabel2: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var errorMessageView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) final public var errorImageView: UIKit.UIImageView
+  @_Concurrency.MainActor(unsafe) final public var errorMessageLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var tableView: UIKit.UITableView
+  @_Concurrency.MainActor(unsafe) final public var confirmButtonBgView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) final public var confirmButton: UIKit.UIButton
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewDidLayoutSubviews()
   @objc deinit
 }
 extension CircleProgrammableWalletSDK.RecoverPINCodeViewController : UIKit.UITableViewDataSource {
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor(unsafe) @objc final public func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor(unsafe) @objc final public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
 }
 public struct SecurityConfirmItem {
   public init(image: UIKit.UIImage? = nil, url: Foundation.URL? = nil, text: Swift.String)
 }
-@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class SecurityConfirmViewController : CircleProgrammableWalletSDK.BaseViewController {
-  @_Concurrency.MainActor(unsafe) public var scrollView: UIKit.UIScrollView
-  @_Concurrency.MainActor(unsafe) public var scrollStackViewContainer: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var imageBgView: UIKit.UIView
-  @_Concurrency.MainActor(unsafe) public var imageView: UIKit.UIImageView
-  @_Concurrency.MainActor(unsafe) public var tipsStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var tipsTitleLabel: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var agreeStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var agreeTitleLabel: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var agreeTextField: CircleProgrammableWalletSDK.PaddedTextField
-  @_Concurrency.MainActor(unsafe) public var continueButton: UIKit.UIButton
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class SecurityConfirmViewController : CircleProgrammableWalletSDK.BaseViewController {
+  @_Concurrency.MainActor(unsafe) final public var scrollView: UIKit.UIScrollView
+  @_Concurrency.MainActor(unsafe) final public var scrollStackViewContainer: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var imageBgView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) final public var imageView: UIKit.UIImageView
+  @_Concurrency.MainActor(unsafe) final public var tipsStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var tipsTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var agreeStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var agreeTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var agreeTextField: CircleProgrammableWalletSDK.PaddedTextField
+  @_Concurrency.MainActor(unsafe) final public var continueButton: UIKit.UIButton
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewWillDisappear(_ animated: Swift.Bool)
   @objc deinit
 }
 extension CircleProgrammableWalletSDK.SecurityConfirmViewController : UIKit.UITextFieldDelegate {
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func textFieldDidBeginEditing(_ textField: UIKit.UITextField)
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func textFieldDidEndEditing(_ textField: UIKit.UITextField, reason: UIKit.UITextField.DidEndEditingReason)
+  @_Concurrency.MainActor(unsafe) @objc final public func textFieldDidBeginEditing(_ textField: UIKit.UITextField)
+  @_Concurrency.MainActor(unsafe) @objc final public func textFieldDidEndEditing(_ textField: UIKit.UITextField, reason: UIKit.UITextField.DidEndEditingReason)
 }
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class SecurityIntrosViewController : CircleProgrammableWalletSDK.BaseViewController {
-  @_Concurrency.MainActor(unsafe) public var introImageView: UIKit.UIImageView
-  @_Concurrency.MainActor(unsafe) public var titleStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var titleLabel1: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var titleLabel2: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var introsStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var introDescLabel: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var introLinkButton: UIKit.UIButton
-  @_Concurrency.MainActor(unsafe) public var continueButton: UIKit.UIButton
-  @_Concurrency.MainActor(unsafe) public var introLink: Swift.String
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class SecurityIntrosViewController : CircleProgrammableWalletSDK.BaseViewController {
+  @_Concurrency.MainActor(unsafe) final public var introImageView: UIKit.UIImageView
+  @_Concurrency.MainActor(unsafe) final public var titleStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var titleLabel1: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var titleLabel2: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var introsStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var introDescLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var introLinkButton: UIKit.UIButton
+  @_Concurrency.MainActor(unsafe) final public var continueButton: UIKit.UIButton
+  @_Concurrency.MainActor(unsafe) final public var introURL: Foundation.URL?
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewWillAppear(_ animated: Swift.Bool)
   @objc deinit
 }
 public struct SecurityQuestion : Swift.Equatable {
@@ -1599,73 +425,73 @@ public struct SecurityQuestion : Swift.Equatable {
   public init(title: Swift.String, inputType: CircleProgrammableWalletSDK.SecurityQuestion.InputType)
   public static func == (a: CircleProgrammableWalletSDK.SecurityQuestion, b: CircleProgrammableWalletSDK.SecurityQuestion) -> Swift.Bool
 }
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class SecurityQuestionsViewController : CircleProgrammableWalletSDK.BaseViewController {
-  @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView
-  @_Concurrency.MainActor(unsafe) public var nextButtonBgView: UIKit.UIView
-  @_Concurrency.MainActor(unsafe) public var nextButton: UIKit.UIButton
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class SecurityQuestionsViewController : CircleProgrammableWalletSDK.BaseViewController {
+  @_Concurrency.MainActor(unsafe) final public var tableView: UIKit.UITableView
+  @_Concurrency.MainActor(unsafe) final public var nextButtonBgView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) final public var nextButton: UIKit.UIButton
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewDidLoad()
   @objc deinit
 }
 extension CircleProgrammableWalletSDK.SecurityQuestionsViewController : UIKit.UITableViewDataSource {
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor(unsafe) @objc final public func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor(unsafe) @objc final public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
 }
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class SecurityQuestionTableViewCell : UIKit.UITableViewCell {
-  @_Concurrency.MainActor(unsafe) public var contentStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var questionStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var questionTitleStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var questionTitleLabel: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var questionMarkLabel: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var questionView: UIKit.UIView
-  @_Concurrency.MainActor(unsafe) public var questionTrailingButton: UIKit.UIButton
-  @_Concurrency.MainActor(unsafe) public var answerStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var answerTitleStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var answerTitleLabel: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var answerMarkLabel: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var hintStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var hintTitleLabel: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var hintWarningLabel: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var cellBottomLineView: UIKit.UIView
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class SecurityQuestionTableViewCell : UIKit.UITableViewCell {
+  @_Concurrency.MainActor(unsafe) final public var contentStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var questionStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var questionTitleStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var questionTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var questionMarkLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var questionView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) final public var questionTrailingButton: UIKit.UIButton
+  @_Concurrency.MainActor(unsafe) final public var answerStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var answerTitleStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var answerTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var answerMarkLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var hintStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var hintTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var hintWarningLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var cellBottomLineView: UIKit.UIView
   @_Concurrency.MainActor(unsafe) @objc override dynamic public init(style: UIKit.UITableViewCell.CellStyle, reuseIdentifier: Swift.String?)
   @objc deinit
 }
 extension CircleProgrammableWalletSDK.SecurityQuestionTableViewCell : UIKit.UITextFieldDelegate {
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func textFieldDidBeginEditing(_ textField: UIKit.UITextField)
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func textFieldDidEndEditing(_ textField: UIKit.UITextField, reason: UIKit.UITextField.DidEndEditingReason)
+  @_Concurrency.MainActor(unsafe) @objc final public func textFieldDidBeginEditing(_ textField: UIKit.UITextField)
+  @_Concurrency.MainActor(unsafe) @objc final public func textFieldDidEndEditing(_ textField: UIKit.UITextField, reason: UIKit.UITextField.DidEndEditingReason)
 }
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class SecuritySummaryTableViewCell : UIKit.UITableViewCell {
-  @_Concurrency.MainActor(unsafe) public var containerView: UIKit.UIView
-  @_Concurrency.MainActor(unsafe) public var titleLabel: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var contentStackView: UIKit.UIStackView
-  @_Concurrency.MainActor(unsafe) public var questionTitleLabel: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var answerTitleLabel: UIKit.UILabel
-  @_Concurrency.MainActor(unsafe) public var hintTitleLabel: UIKit.UILabel
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class SecuritySummaryTableViewCell : UIKit.UITableViewCell {
+  @_Concurrency.MainActor(unsafe) final public var containerView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) final public var titleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var contentStackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var questionTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var answerTitleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var hintTitleLabel: UIKit.UILabel
   @objc deinit
 }
-@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class SecuritySummaryViewController : CircleProgrammableWalletSDK.BaseViewController {
-  @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView
-  @_Concurrency.MainActor(unsafe) public var continueButtonBgView: UIKit.UIView
-  @_Concurrency.MainActor(unsafe) public var continueButton: UIKit.UIButton
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class SecuritySummaryViewController : CircleProgrammableWalletSDK.BaseViewController {
+  @_Concurrency.MainActor(unsafe) final public var tableView: UIKit.UITableView
+  @_Concurrency.MainActor(unsafe) final public var continueButtonBgView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) final public var continueButton: UIKit.UIButton
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewDidLoad()
   @objc deinit
 }
 extension CircleProgrammableWalletSDK.SecuritySummaryViewController : UIKit.UITableViewDataSource {
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor(unsafe) @objc final public func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor(unsafe) @objc final public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
 }
-@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class SelectQuestionViewController : CircleProgrammableWalletSDK.BaseViewController {
-  @_Concurrency.MainActor(unsafe) public var dividerView: UIKit.UIView
-  @_Concurrency.MainActor(unsafe) public var tableView: UIKit.UITableView
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewDidLoad()
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillAppear(_ animated: Swift.Bool)
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func observeValue(forKeyPath keyPath: Swift.String?, of object: Any?, change: [Foundation.NSKeyValueChangeKey : Any]?, context: Swift.UnsafeMutableRawPointer?)
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class SelectQuestionViewController : CircleProgrammableWalletSDK.BaseViewController {
+  @_Concurrency.MainActor(unsafe) final public var dividerView: UIKit.UIView
+  @_Concurrency.MainActor(unsafe) final public var tableView: UIKit.UITableView
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewDidLoad()
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) @objc override final public func observeValue(forKeyPath keyPath: Swift.String?, of object: Any?, change: [Foundation.NSKeyValueChangeKey : Any]?, context: Swift.UnsafeMutableRawPointer?)
   @objc deinit
 }
 extension CircleProgrammableWalletSDK.SelectQuestionViewController : UIKit.UITableViewDataSource, UIKit.UITableViewDelegate {
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
-  @_Concurrency.MainActor(unsafe) @objc dynamic public func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
+  @_Concurrency.MainActor(unsafe) @objc final public func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
+  @_Concurrency.MainActor(unsafe) @objc final public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
+  @_Concurrency.MainActor(unsafe) @objc final public func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
 }
 public struct ThemeConfig : Swift.Decodable {
   public let font: CircleProgrammableWalletSDK.ThemeConfig.ThemeFont?
@@ -1696,26 +522,30 @@ extension CircleProgrammableWalletSDK.ThemeConfig {
     public let textSummary: Swift.String?, textSummaryHighlight: Swift.String?
     public let textPlaceholder: Swift.String?
     public let textAction: Swift.String?, textActionPressed: Swift.String?
+    public let textPrompt: Swift.String?, textPrompt2: Swift.String?
     public let pinDotBase: Swift.String?, pinDotBaseBorder: Swift.String?, pinDotActivated: Swift.String?
+    public let pinDotFocused: Swift.String?
     public let inputBorder: Swift.String?, inputBorderFocused: Swift.String?, inputBackgroundDisabled: Swift.String?
     public let mainBTText: Swift.String?, mainBTTextPressed: Swift.String?, mainBTTextDisabled: Swift.String?
     public let mainBTBackground: Swift.String?, mainBTBackgroundPressed: Swift.String?, mainBTBackgroundDisabled: Swift.String?
+    public let secondBTText: Swift.String?
+    public let secondBTBorder: Swift.String?
+    public let secondBTBackground: Swift.String?, secondBTBackgroundPressed: Swift.String?
+    public let plainBTText: Swift.String?
+    public let plainBTBackground: Swift.String?, plainBTBackgroundPressed: Swift.String?
     public let recoverPinHintTitle: Swift.String?, recoverPinHintTitleBg: Swift.String?, recoverPinHint: Swift.String?
     public let securityConfirmMainBg: Swift.String?
     public let titleGradients: [Swift.String]?
     public init(from decoder: Swift.Decoder) throws
   }
 }
-@available(iOS 8.0, *)
-extension UIKit.UILayoutSupport {
-  @_Concurrency.MainActor(unsafe) public var snp: CircleProgrammableWalletSDK.ConstraintLayoutSupportDSL {
-    get
-  }
-}
 @_hasMissingDesignatedInitializers public class WalletSdk {
   public static let shared: CircleProgrammableWalletSDK.WalletSdk
   public struct Configuration {
-    public init(endPoint: Swift.String, appId: Swift.String)
+    public init(endPoint: Swift.String, appId: Swift.String, settingsManagement: CircleProgrammableWalletSDK.WalletSdk.SettingsManagement = .init())
+  }
+  public struct SettingsManagement {
+    public init(enableBiometricsPin: Swift.Bool = false)
   }
   @objc deinit
 }
@@ -1725,6 +555,7 @@ extension CircleProgrammableWalletSDK.WalletSdk {
   public func setErrorMessenger(_ messenger: CircleProgrammableWalletSDK.ErrorMessenger)
   public func setDelegate(_ delegate: CircleProgrammableWalletSDK.WalletSdkDelegate)
   public func execute(userToken: Swift.String, encryptionKey: Swift.String, challengeIds: [Swift.String], completion: CircleProgrammableWalletSDK.ExecuteCompletion? = nil)
+  public func setBiometricsPin(userToken: Swift.String, encryptionKey: Swift.String, completion: CircleProgrammableWalletSDK.ExecuteCompletion? = nil)
   public func sdkVersion() -> Swift.String?
 }
 public protocol WalletSdkDelegate : AnyObject {
@@ -1756,15 +587,9 @@ extension CircleProgrammableWalletSDK.ChallengeStatus : Swift.RawRepresentable {
 extension CircleProgrammableWalletSDK.ChallengeType : Swift.Equatable {}
 extension CircleProgrammableWalletSDK.ChallengeType : Swift.Hashable {}
 extension CircleProgrammableWalletSDK.ChallengeType : Swift.RawRepresentable {}
-extension CircleProgrammableWalletSDK.Device.Orientation : Swift.Equatable {}
-extension CircleProgrammableWalletSDK.Device.Orientation : Swift.Hashable {}
-extension CircleProgrammableWalletSDK.Device.CameraType : Swift.Equatable {}
-extension CircleProgrammableWalletSDK.Device.CameraType : Swift.Hashable {}
-@available(iOS 11.0, watchOS 4.0, macOS 10.10.3, tvOS 11.0, *)
-extension CircleProgrammableWalletSDK.Device.ThermalState : Swift.Equatable {}
-@available(iOS 11.0, watchOS 4.0, macOS 10.10.3, tvOS 11.0, *)
-extension CircleProgrammableWalletSDK.Device.ThermalState : Swift.Hashable {}
-extension CircleProgrammableWalletSDK.Device.CPU : Swift.Hashable {}
+extension CircleProgrammableWalletSDK.ExecuteWarning.WarningType : Swift.Equatable {}
+extension CircleProgrammableWalletSDK.ExecuteWarning.WarningType : Swift.Hashable {}
+extension CircleProgrammableWalletSDK.ExecuteWarning.WarningType : Swift.RawRepresentable {}
 extension CircleProgrammableWalletSDK.ImageStore.Img : Swift.Equatable {}
 extension CircleProgrammableWalletSDK.ImageStore.Img : Swift.Hashable {}
 extension CircleProgrammableWalletSDK.RandomError : Swift.Equatable {}
