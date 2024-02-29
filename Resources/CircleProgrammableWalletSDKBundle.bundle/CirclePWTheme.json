@@ -61,6 +61,11 @@
 
         "security_confirm_main_bg": "#E9EEFE",
 
+        "swipe_bt_text": "#FFFFFF",
+        "swipe_bt_main_background": "#0073C3",
+        "swpie_bt_secondary_background": "#F1F9FE",
+        "swpie_bt_confirming_indicator": "#0073C3",
+
         "title_gradients": ["#0073C3", "#0073C3"],
     }
 }

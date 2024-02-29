@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
 // swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name CircleProgrammableWalletSDK
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import Alamofire
@@ -16,6 +16,7 @@ import Swift
 import UIKit
 import _Concurrency
 import _StringProcessing
+import _SwiftConcurrencyShims
 public struct ApiError : Swift.Error {
   public let errorCode: CircleProgrammableWalletSDK.ApiError.ErrorCode
   public let errorString: Swift.String
@@ -101,6 +102,8 @@ extension CircleProgrammableWalletSDK.ApiError {
     case biometricsUserLockoutPermanent
     case biometricsUserNotAllowPermission
     case biometricsInternalError
+    case userSecretMissing
+    case invalidUserSecret
     public var description: Swift.String {
       get
     }
@@ -161,7 +164,7 @@ public enum ChallengeStatus : Swift.String, Swift.Decodable {
   case COMPLETE
   case FAILED
   case EXPIRED
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
   public init?(rawValue: Swift.String)
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
@@ -182,7 +185,8 @@ public enum ChallengeType : Swift.String, Swift.Decodable {
   case CONTRACT_EXECUTION
   case SIGN_MESSAGE
   case SIGN_TYPEDDATA
-  public init(from decoder: Swift.Decoder) throws
+  case SIGN_TRANSACTION
+  public init(from decoder: any Swift.Decoder) throws
   public init?(rawValue: Swift.String)
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
@@ -225,7 +229,9 @@ public struct ExecuteResult {
   }
   public struct ExecuteResultData : Swift.Decodable {
     public let signature: Swift.String?
-    public init(from decoder: Swift.Decoder) throws
+    public let signedTransaction: Swift.String?
+    public let txHash: Swift.String?
+    public init(from decoder: any Swift.Decoder) throws
   }
 }
 public struct ExecuteWarning {
@@ -261,6 +267,8 @@ public struct ImageStore {
     case biometricsAllowMain
     case showPin
     case hidePin
+    case swipeItemIcon
+    case swipeBtConfirmed
     public static func == (a: CircleProgrammableWalletSDK.ImageStore.Img, b: CircleProgrammableWalletSDK.ImageStore.Img) -> Swift.Bool
     public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
@@ -377,7 +385,7 @@ extension CircleProgrammableWalletSDK.RecoverPINCodeViewController : UIKit.UITab
   @_Concurrency.MainActor(unsafe) @objc final public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
 }
 public struct SecurityConfirmItem {
-  public init(image: UIKit.UIImage? = nil, url: Foundation.URL? = nil, text: Swift.String)
+  public init(image: UIKit.UIImage? = nil, imageUrl: Foundation.URL? = nil, text: Swift.String)
 }
 @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class SecurityConfirmViewController : CircleProgrammableWalletSDK.BaseViewController {
   @_Concurrency.MainActor(unsafe) final public var scrollView: UIKit.UIScrollView
@@ -480,6 +488,12 @@ extension CircleProgrammableWalletSDK.SecuritySummaryViewController : UIKit.UITa
   @_Concurrency.MainActor(unsafe) @objc final public func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int
   @_Concurrency.MainActor(unsafe) @objc final public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
 }
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class SelectQuestionTableViewCell : UIKit.UITableViewCell {
+  @_Concurrency.MainActor(unsafe) final public var stackView: UIKit.UIStackView
+  @_Concurrency.MainActor(unsafe) final public var titleLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var checkmarkImage: UIKit.UIImageView
+  @objc deinit
+}
 @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class SelectQuestionViewController : CircleProgrammableWalletSDK.BaseViewController {
   @_Concurrency.MainActor(unsafe) final public var dividerView: UIKit.UIView
   @_Concurrency.MainActor(unsafe) final public var tableView: UIKit.UITableView
@@ -494,10 +508,23 @@ extension CircleProgrammableWalletSDK.SelectQuestionViewController : UIKit.UITab
   @_Concurrency.MainActor(unsafe) @objc final public func tableView(_ tableView: UIKit.UITableView, cellForRowAt indexPath: Foundation.IndexPath) -> UIKit.UITableViewCell
   @_Concurrency.MainActor(unsafe) @objc final public func tableView(_ tableView: UIKit.UITableView, didSelectRowAt indexPath: Foundation.IndexPath)
 }
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class SwipeToConfirmButton : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) final public let label: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public let indicator: UIKit.UIActivityIndicatorView
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class SwipeToConfirmViewController : CircleProgrammableWalletSDK.BaseViewController {
+  @_Concurrency.MainActor(unsafe) final public var descriptionLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var errorLabel: UIKit.UILabel
+  @_Concurrency.MainActor(unsafe) final public var swipeButton: CircleProgrammableWalletSDK.SwipeToConfirmButton
+  @_Concurrency.MainActor(unsafe) @objc override final public func viewDidLoad()
+  @objc deinit
+}
 public struct ThemeConfig : Swift.Decodable {
   public let font: CircleProgrammableWalletSDK.ThemeConfig.ThemeFont?
   public let color: CircleProgrammableWalletSDK.ThemeConfig.ThemeColor?
-  public init(from decoder: Swift.Decoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 extension CircleProgrammableWalletSDK.ThemeConfig {
   public struct ThemeFont : Swift.Decodable {
@@ -511,7 +538,7 @@ extension CircleProgrammableWalletSDK.ThemeConfig {
     public let heavy: Swift.String?
     public let black: Swift.String?
     public init(ultraLight: Swift.String? = nil, thin: Swift.String? = nil, light: Swift.String? = nil, regular: Swift.String? = nil, medium: Swift.String? = nil, semibold: Swift.String? = nil, bold: Swift.String? = nil, heavy: Swift.String? = nil, black: Swift.String? = nil)
-    public init(from decoder: Swift.Decoder) throws
+    public init(from decoder: any Swift.Decoder) throws
   }
 }
 extension CircleProgrammableWalletSDK.ThemeConfig {
@@ -536,8 +563,12 @@ extension CircleProgrammableWalletSDK.ThemeConfig {
     public let plainBTBackground: Swift.String?, plainBTBackgroundPressed: Swift.String?
     public let recoverPinHintTitle: Swift.String?, recoverPinHintTitleBg: Swift.String?, recoverPinHint: Swift.String?
     public let securityConfirmMainBg: Swift.String?
+    public let swipeBtText: Swift.String?
+    public let swipeBtMainBackground: Swift.String?
+    public let swipeBtSecondaryBackground: Swift.String?
+    public let swipeBtConfirmingIndicator: Swift.String?
     public let titleGradients: [Swift.String]?
-    public init(from decoder: Swift.Decoder) throws
+    public init(from decoder: any Swift.Decoder) throws
   }
 }
 @_hasMissingDesignatedInitializers public class WalletSdk {
@@ -547,17 +578,19 @@ extension CircleProgrammableWalletSDK.ThemeConfig {
     public init(endPoint: Swift.String, appId: Swift.String, settingsManagement: CircleProgrammableWalletSDK.WalletSdk.SettingsManagement = .init())
   }
   public struct SettingsManagement {
-    public init(enableBiometricsPin: Swift.Bool = false)
+    public init(enableBiometricsPin: Swift.Bool = false, disableConfirmationUI: Swift.Bool = false)
   }
   @objc deinit
 }
 extension CircleProgrammableWalletSDK.WalletSdk {
   public func setConfiguration(_ configuration: CircleProgrammableWalletSDK.WalletSdk.Configuration) throws
-  public func setLayoutProvider(_ provider: CircleProgrammableWalletSDK.WalletSdkLayoutProvider)
-  public func setErrorMessenger(_ messenger: CircleProgrammableWalletSDK.ErrorMessenger)
-  public func setDelegate(_ delegate: CircleProgrammableWalletSDK.WalletSdkDelegate)
+  public func setLayoutProvider(_ provider: any CircleProgrammableWalletSDK.WalletSdkLayoutProvider)
+  public func setErrorMessenger(_ messenger: any CircleProgrammableWalletSDK.ErrorMessenger)
+  public func setDelegate(_ delegate: any CircleProgrammableWalletSDK.WalletSdkDelegate)
   public func execute(userToken: Swift.String, encryptionKey: Swift.String, challengeIds: [Swift.String], completion: CircleProgrammableWalletSDK.ExecuteCompletion? = nil)
+  public func executeWithUserSecret(userToken: Swift.String, encryptionKey: Swift.String, userSecret: Swift.String, challengeIds: [Swift.String], completion: CircleProgrammableWalletSDK.ExecuteCompletion? = nil)
   public func setBiometricsPin(userToken: Swift.String, encryptionKey: Swift.String, completion: CircleProgrammableWalletSDK.ExecuteCompletion? = nil)
+  public func getDeviceId() -> Swift.String
   public func sdkVersion() -> Swift.String?
 }
 public protocol WalletSdkDelegate : AnyObject {
