@@ -104,6 +104,7 @@ extension CircleProgrammableWalletSDK.ApiError {
     case biometricsInternalError
     case userSecretMissing
     case invalidUserSecret
+    case userTokenMismatch
     public var description: Swift.String {
       get
     }
@@ -231,6 +232,9 @@ public struct ExecuteResult {
     public let signature: Swift.String?
     public let signedTransaction: Swift.String?
     public let txHash: Swift.String?
+    public let v: Swift.String?
+    public let r: Swift.String?
+    public let s: Swift.String?
     public init(from decoder: any Swift.Decoder) throws
   }
 }
@@ -292,6 +296,8 @@ public protocol JWT {
   var signature: Swift.String? { get }
   var string: Swift.String { get }
   var userId: Swift.String? { get }
+  var externalUserId: Swift.String? { get }
+  var authMode: Swift.String? { get }
 }
 extension CircleProgrammableWalletSDK.JWT {
   public func claim(name: Swift.String) -> CircleProgrammableWalletSDK.Claim
