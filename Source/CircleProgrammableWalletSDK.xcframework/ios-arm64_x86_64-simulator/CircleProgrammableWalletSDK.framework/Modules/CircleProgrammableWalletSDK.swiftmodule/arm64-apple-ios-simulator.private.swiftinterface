@@ -558,7 +558,7 @@ extension CircleProgrammableWalletSDK.ThemeConfig {
     public let textAction: Swift.String?, textActionPressed: Swift.String?
     public let textPrompt: Swift.String?, textPrompt2: Swift.String?
     public let pinDotBase: Swift.String?, pinDotBaseBorder: Swift.String?, pinDotActivated: Swift.String?
-    public let pinDotFocused: Swift.String?
+    public let pinDotFocused: Swift.String?, pinDigitActivated: Swift.String?
     public let inputBorder: Swift.String?, inputBorderFocused: Swift.String?, inputBackgroundDisabled: Swift.String?
     public let mainBTText: Swift.String?, mainBTTextPressed: Swift.String?, mainBTTextDisabled: Swift.String?
     public let mainBTBackground: Swift.String?, mainBTBackgroundPressed: Swift.String?, mainBTBackgroundDisabled: Swift.String?
