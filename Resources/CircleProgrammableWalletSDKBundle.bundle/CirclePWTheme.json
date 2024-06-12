@@ -15,7 +15,7 @@
         "background": "#FFFFFF",
         "divider": "#F0EFEF",
         "success": "#0B9C4A",
-        "error": "#F55538",
+        "error": "#BC0016",
         "error_background": "#FDF2F2",
 
         "text_main": "#1A1A1A",
@@ -29,6 +29,9 @@
         "text_action_pressed": "#B3136FD8",
         "text_prompt": "#29233B",
         "text_prompt2": "#6B6580",
+        "text_exchange": "#979797",
+        "text_interactive": "#0073C3",
+        "text_sign_url": "#8E8E93",
 
         "pin_dot_base": "#FFFFFF",
         "pin_dot_base_border": "#707070",
@@ -62,10 +65,10 @@
 
         "security_confirm_main_bg": "#E9EEFE",
 
-        "swipe_bt_text": "#FFFFFF",
-        "swipe_bt_main_background": "#0073C3",
-        "swpie_bt_secondary_background": "#F1F9FE",
-        "swpie_bt_confirming_indicator": "#0073C3",
+        "tip_text": "#FFFFFF",
+        "tip_background": "#29233B",
+
+        "interactive_background": "#F9F9FC",
 
         "title_gradients": ["#0073C3", "#0073C3"],
     }
