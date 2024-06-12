@@ -336,6 +336,13 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK26BasePINInputViewController")
 
 
 
+SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK25BaseRequestViewController")
+@interface BaseRequestViewController : BaseViewController
+- (void)viewDidLoad;
+@end
+
+
+
 
 
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK30BiometricsPromptViewController")
@@ -360,6 +367,33 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28ConfirmPINCodeViewController")
 
 
 
+SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK32TransactionRequestViewController")
+@interface TransactionRequestViewController : BaseRequestViewController
+@end
+
+
+SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK29ContractRequestViewController")
+@interface ContractRequestViewController : TransactionRequestViewController
+@end
+
+
+
+SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK22EmailOTPViewController")
+@interface EmailOTPViewController : BaseViewController
+- (void)viewDidLoad;
+- (void)viewWillAppear:(BOOL)animated;
+- (void)viewWillDisappear:(BOOL)animated;
+@end
+
+
+@interface EmailOTPViewController (SWIFT_EXTENSION(CircleProgrammableWalletSDK)) <UITextFieldDelegate>
+- (BOOL)textField:(UITextField * _Nonnull)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString * _Nonnull)string SWIFT_WARN_UNUSED_RESULT;
+- (void)textFieldDidChange:(UITextField * _Nonnull)textField;
+@end
+
+
+
+
 SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK26EnterPINCodeViewController")
 @interface EnterPINCodeViewController : BasePINInputViewController
 - (void)viewDidLoad;
@@ -371,6 +405,17 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK26EnterPINCodeViewController")
 
 @interface EnterPINCodeViewController (SWIFT_EXTENSION(CircleProgrammableWalletSDK))
 - (void)textFieldDidChange:(UITextField * _Nonnull)textField;
+@end
+
+
+
+SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK20FeeTipViewController")
+@interface FeeTipViewController : UIViewController
+- (void)viewDidLoad;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
+- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
 
@@ -419,6 +464,12 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK11PaddedLabel")
 @property (nonatomic, readonly) CGSize intrinsicContentSize;
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+
+SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK35RawTransactionRequestViewController")
+@interface RawTransactionRequestViewController : BaseRequestViewController
 @end
 
 
@@ -498,11 +549,11 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK31SecurityQuestionsViewController"
 @end
 
 
-
 @interface SecurityQuestionsViewController (SWIFT_EXTENSION(CircleProgrammableWalletSDK)) <UITableViewDataSource>
 - (NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
 - (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
 @end
+
 
 
 
@@ -552,17 +603,20 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28SelectQuestionViewController")
 @end
 
 
-SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK20SwipeToConfirmButton")
-@interface SwipeToConfirmButton : UIView
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
-@end
-
-
-SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28SwipeToConfirmViewController")
-@interface SwipeToConfirmViewController : BaseViewController
+SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK30SignatureRequestViewController")
+@interface SignatureRequestViewController : BaseViewController
 - (void)viewDidLoad;
 @end
+
+
+
+@class UIPresentationController;
+
+@interface TransactionRequestViewController (SWIFT_EXTENSION(CircleProgrammableWalletSDK)) <UIPopoverPresentationControllerDelegate>
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController * _Nonnull)controller SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
 
 
 
