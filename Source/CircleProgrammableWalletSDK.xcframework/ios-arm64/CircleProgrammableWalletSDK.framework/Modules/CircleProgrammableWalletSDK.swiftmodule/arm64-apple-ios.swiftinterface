@@ -21,15 +21,9 @@ import UIKit
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
-public struct ApiError : Swift.Error {
-  public let errorCode: CircleProgrammableWalletSDK.ApiError.ErrorCode
-  public let errorString: Swift.String
-  public var displayString: Swift.String {
-    get
-  }
-}
 extension CircleProgrammableWalletSDK.ApiError {
-  public enum ErrorCode : Swift.Int {
+  public enum ErrorCode {
+    case undefined(code: Swift.Int)
     case unknown
     case success
     case apiParameterMissing
@@ -107,17 +101,20 @@ extension CircleProgrammableWalletSDK.ApiError {
     case biometricsUserNotAllowPermission
     case biometricsInternalError
     case userSecretMissing
-    case invalidUserSecret
+    case invalidUserTokenFormat
     case userTokenMismatch
     case socialLoginFailed
-    public var description: Swift.String {
-      get
-    }
-    public init?(rawValue: Swift.Int)
-    public typealias RawValue = Swift.Int
-    public var rawValue: Swift.Int {
-      get
-    }
+    case loginInfoMissing
+  }
+}
+extension CircleProgrammableWalletSDK.ApiError.ErrorCode : Swift.Equatable {
+  public static func == (a: CircleProgrammableWalletSDK.ApiError.ErrorCode, b: CircleProgrammableWalletSDK.ApiError.ErrorCode) -> Swift.Bool
+}
+public struct ApiError : Swift.Error {
+  public let errorCode: CircleProgrammableWalletSDK.ApiError.ErrorCode
+  public let errorString: Swift.String
+  public var displayString: Swift.String {
+    get
   }
 }
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class BasePINInputViewController : CircleProgrammableWalletSDK.BaseViewController {
@@ -715,9 +712,6 @@ extension CircleProgrammableWalletSDK.WalletSdkLayoutProvider {
   public func themeFont() -> CircleProgrammableWalletSDK.ThemeConfig.ThemeFont?
   public func displayDateFormat() -> Swift.String
 }
-extension CircleProgrammableWalletSDK.ApiError.ErrorCode : Swift.Equatable {}
-extension CircleProgrammableWalletSDK.ApiError.ErrorCode : Swift.Hashable {}
-extension CircleProgrammableWalletSDK.ApiError.ErrorCode : Swift.RawRepresentable {}
 extension CircleProgrammableWalletSDK.ChallengeStatus : Swift.Equatable {}
 extension CircleProgrammableWalletSDK.ChallengeStatus : Swift.Hashable {}
 extension CircleProgrammableWalletSDK.ChallengeStatus : Swift.RawRepresentable {}
