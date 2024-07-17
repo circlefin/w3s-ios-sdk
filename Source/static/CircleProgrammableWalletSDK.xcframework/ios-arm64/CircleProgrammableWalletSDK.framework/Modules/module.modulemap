@@ -1,0 +1,11 @@
+framework module CircleProgrammableWalletSDK {
+  umbrella header "CircleProgrammableWalletSDK.h"
+  export *
+
+  module * { export * }
+}
+
+module CircleProgrammableWalletSDK.Swift {
+  header "CircleProgrammableWalletSDK-Swift.h"
+  requires objc
+}

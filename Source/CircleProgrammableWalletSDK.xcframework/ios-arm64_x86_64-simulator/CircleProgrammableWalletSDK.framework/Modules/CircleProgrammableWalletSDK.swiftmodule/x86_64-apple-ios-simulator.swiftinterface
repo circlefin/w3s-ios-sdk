@@ -40,6 +40,7 @@ extension CircleProgrammableWalletSDK.ApiError {
     case walletIdNotFound
     case tokenIdNotFound
     case transactionIdNotFound
+    case entityCredentialNotFound
     case walletSetIdNotFound
     case notEnoughFounds
     case notEnoughBalance
@@ -562,16 +563,16 @@ extension CircleProgrammableWalletSDK.SelectQuestionViewController : UIKit.UITab
   @_Concurrency.MainActor(unsafe) @objc override final public func viewDidLoad()
 }
 public struct OauthInfo : Swift.Decodable {
-  public let provider: Swift.String
-  public let scope: [Swift.String]?
-  public let ssoUserUUID: Swift.String
-  public let ssoUserInfo: CircleProgrammableWalletSDK.OauthInfo.SsoUserInfo?
-  public struct SsoUserInfo : Swift.Decodable {
+  public struct SocialUserInfo : Swift.Decodable {
     public let name: Swift.String?
     public let email: Swift.String?
     public let phone: Swift.String?
     public init(from decoder: any Swift.Decoder) throws
   }
+  public let provider: Swift.String
+  public let scope: [Swift.String]?
+  public let socialUserUUID: Swift.String
+  public let socialUserInfo: CircleProgrammableWalletSDK.OauthInfo.SocialUserInfo?
   public init(from decoder: any Swift.Decoder) throws
 }
 public enum SocialProvider : Swift.String {
