@@ -100,6 +100,9 @@ extension CircleProgrammableWalletSDK.ApiError {
     case userTokenMismatch
     case socialLoginFailed
     case loginInfoMissing
+    public var rawValue: Swift.Int {
+      get
+    }
   }
 }
 extension CircleProgrammableWalletSDK.ApiError.ErrorCode : Swift.Equatable {
