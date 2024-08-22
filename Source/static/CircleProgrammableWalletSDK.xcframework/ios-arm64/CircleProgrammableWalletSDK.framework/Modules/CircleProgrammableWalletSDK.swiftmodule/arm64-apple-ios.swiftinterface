@@ -633,8 +633,8 @@ extension CircleProgrammableWalletSDK.ThemeConfig {
   }
 }
 @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class TransactionRequestViewController : CircleProgrammableWalletSDK.BaseRequestViewController {
-  @_Concurrency.MainActor(unsafe) final public let amountLabel: UIKit.UILabel
   @_Concurrency.MainActor(unsafe) final public let tokenSymbol: UIKit.UIImageView
+  @_Concurrency.MainActor(unsafe) final public let amountLabel: UIKit.UILabel
   @_Concurrency.MainActor(unsafe) final public let currencyLabel: UIKit.UILabel
   @_Concurrency.MainActor(unsafe) final public let txFiatValueLabel: UIKit.UILabel
   @_Concurrency.MainActor(unsafe) final public let fromTitleLabel: UIKit.UILabel
