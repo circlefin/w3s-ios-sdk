@@ -181,6 +181,7 @@ public enum ChallengeStatus : Swift.String, Swift.Decodable {
 }
 public enum ChallengeType : Swift.String, Swift.Decodable {
   case UNKNOWN
+  case INITIALIZE
   case SET_PIN
   case CHANGE_PIN
   case RESTORE_PIN
