@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0 effective-5.10 (swiftlang-6.0.0.9.10 clang-1600.0.26.2)
-// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name CircleProgrammableWalletSDK
+// swift-compiler-version: Apple Swift version 6.0.2 effective-5.10 (swiftlang-6.0.2.1.2 clang-1600.0.26.4)
+// swift-module-flags: -target x86_64-apple-ios15.1-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name CircleProgrammableWalletSDK
 // swift-module-flags-ignorable: -no-verify-emitted-module-interface
 import Alamofire
 import AuthenticationServices
@@ -689,7 +689,7 @@ extension CircleProgrammableWalletSDK.WalletSdk {
   public func setBiometricsPin(userToken: Swift.String, encryptionKey: Swift.String, completion: CircleProgrammableWalletSDK.ExecuteCompletion? = nil)
   public func getDeviceId() -> Swift.String
   public func sdkVersion() -> Swift.String?
-  public func performLogin(provider: CircleProgrammableWalletSDK.SocialProvider, deviceToken: Swift.String, encryptionKey: Swift.String, completion: CircleProgrammableWalletSDK.LoginCompletion? = nil)
+  public func performLogin(provider: CircleProgrammableWalletSDK.SocialProvider, deviceToken: Swift.String, encryptionKey: Swift.String, selectAccountPrompt: Swift.Bool = true, completion: CircleProgrammableWalletSDK.LoginCompletion? = nil)
   public func verifyOTP(deviceToken: Swift.String, encryptionKey: Swift.String, otpToken: Swift.String, completion: CircleProgrammableWalletSDK.LoginCompletion? = nil)
   public func performLogout(provider: CircleProgrammableWalletSDK.SocialProvider, completion: CircleProgrammableWalletSDK.LogoutCompletion? = nil)
 }
