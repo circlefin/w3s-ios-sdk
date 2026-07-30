@@ -11,7 +11,7 @@ source 'https://github.com/circlefin/w3s-ios-sdk.git'
 
 pod 'CircleProgrammableWalletSDK'
 
-# Support static link SDK after version 1.1.3
+# Support statlic link SDK after version 1.1.3
 # If you want to use it, please use the following pod name
 # pod 'CircleProgrammableWalletSDK_static'
 ```
@@ -21,7 +21,7 @@ The Podfile setup from the Sample App.
 ```shell
 source 'https://github.com/circlefin/w3s-ios-sdk.git'
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '15.1'
+platform :ios, '13.0'
 
 target 'w3s-ios-sample-app-wallets' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -32,7 +32,7 @@ target 'w3s-ios-sample-app-wallets' do
 
   pod 'CircleProgrammableWalletSDK'
 
-  # Support static link SDK after version 1.1.3
+  # Support statlic link SDK after version 1.1.3
   # If you want to use it, please use the following pod name
   # pod 'CircleProgrammableWalletSDK_static'
 
@@ -44,12 +44,12 @@ post_install do |installer|
       config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
 
       # See this: https://developer.apple.com/forums/thread/725300
-      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.1'
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
     end
   end
 end
 
-# Support static link SDK after version 1.1.3
+# Support statlic link SDK after version 1.1.3
 # If you want to use the pod 'CircleProgrammableWalletSDK_static' and static frameworks "use_frameworks! :linkage => :static"
 # Please uncomment the following lines
 #
