@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.ios.vendored_frameworks = 'Source/static/CircleProgrammableWalletSDK.xcframework'
   s.resources = 'Resources/*.bundle'
-  
+
   s.static_framework = true
 
   # Dependency
