@@ -26,7 +26,7 @@
 		</data>
 		<key>CircleProgrammableWalletSDKBundle.bundle/Info.plist</key>
 		<data>
-		e9yEVQraHW8aHVYE9Y0VhzWGAvM=
+		y7T0nbiLB8D+7h8ceY+TmFvSCQ8=
 		</data>
 		<key>CircleProgrammableWalletSDKBundle.bundle/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -34,7 +34,7 @@
 		</data>
 		<key>CircleProgrammableWalletSDKBundle.bundle/_CodeSignature/CodeDirectory</key>
 		<data>
-		0xGV9f2SpuG0LMc/pcs1z6+2/1g=
+		y6tfZSTF2eGQoKniYHdQVxkYhmY=
 		</data>
 		<key>CircleProgrammableWalletSDKBundle.bundle/_CodeSignature/CodeRequirements</key>
 		<data>
@@ -42,7 +42,7 @@
 		</data>
 		<key>CircleProgrammableWalletSDKBundle.bundle/_CodeSignature/CodeRequirements-1</key>
 		<data>
-		e6PT7vug7As8e6r1ZNCbLusLtdY=
+		kHy1d18m6NceUD3ciSG3XTR8n4Y=
 		</data>
 		<key>CircleProgrammableWalletSDKBundle.bundle/_CodeSignature/CodeResources</key>
 		<data>
@@ -70,7 +70,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		qBNv2vRaiqA2XR2+L5cGR/NPlMo=
+		x9Bx4UUHwDb6bYMKu0rEaJFZrnU=
 		</data>
 		<key>Modules/CircleProgrammableWalletSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -90,7 +90,7 @@
 		</data>
 		<key>Modules/CircleProgrammableWalletSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		Sasc94pW6Nx79JfpKFLSmF1gTCk=
+		MW3+zjfHO57DJVQR8AZzqoUPhMU=
 		</data>
 		<key>Modules/CircleProgrammableWalletSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -110,7 +110,7 @@
 		</data>
 		<key>Modules/CircleProgrammableWalletSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		YKfvQUsZhFm0+sYnxIkZ3l4uLeI=
+		gATB7hYB576tfi8PbQl7VFUPeMs=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -178,7 +178,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			iXD7m2Kt/VlKgJ+KvGN9WaSLVdLCmsxifmrfNWF3rmA=
+			YjBsaNiukAR8avm+NIQRAqwfk6s2FxlVK1CAku20MzI=
 			</data>
 		</dict>
 		<key>CircleProgrammableWalletSDKBundle.bundle/PrivacyInfo.xcprivacy</key>
@@ -192,7 +192,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			5MFTf+BcHiB6SPDczK1aBBDjkfpWEpO2rJPQnCiNESo=
+			KHHYAj9lNLzmPsPZVSqAQ0ph9gee37vFijNRA11SOok=
 			</data>
 		</dict>
 		<key>CircleProgrammableWalletSDKBundle.bundle/_CodeSignature/CodeRequirements</key>
@@ -206,7 +206,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			nJyZeUI4I2KnWxJ2X6IPhsCvmpr549UoHRRxBCbTaUc=
+			ZpK+TmAvb41igFIvQhhCP2hkoJb/H18QVVWHq+ZEYm4=
 			</data>
 		</dict>
 		<key>CircleProgrammableWalletSDKBundle.bundle/_CodeSignature/CodeResources</key>
@@ -283,7 +283,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			psiTA9yR2jhnvFpEsNCSAoMqMZ9nXDSeghmaPP2ACcI=
+			mfNv6QV3yLfHgKLN5gxmcLcLDQKsM9R9wmak9XcIZ40=
 			</data>
 		</dict>
 		<key>Modules/CircleProgrammableWalletSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
@@ -318,7 +318,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			WPJUSuNIIqOsLiYFrbtoZYr/YnTAnkcWTO535n8wb0w=
+			STnDYu3H5LZQm6+7fqos44t4dGHaIt5roBNzC98keMA=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
