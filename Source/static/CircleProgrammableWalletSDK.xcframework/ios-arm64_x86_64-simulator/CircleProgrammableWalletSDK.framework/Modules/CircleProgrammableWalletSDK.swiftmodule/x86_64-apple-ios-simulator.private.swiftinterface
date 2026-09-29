@@ -539,8 +539,14 @@ extension CircleProgrammableWalletSDK.SecuritySummaryViewController : UIKit.UITa
   @_Concurrency.MainActor @preconcurrency @objc override final public func viewDidLoad()
   @_Concurrency.MainActor @preconcurrency @objc override final public func viewWillAppear(_ animated: Swift.Bool)
   @_Concurrency.MainActor @preconcurrency @objc override final public func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override final public func viewSafeAreaInsetsDidChange()
   @_Concurrency.MainActor @preconcurrency @objc override final public func observeValue(forKeyPath keyPath: Swift.String?, of object: Any?, change: [Foundation.NSKeyValueChangeKey : Any]?, context: Swift.UnsafeMutableRawPointer?)
   @objc deinit
+}
+extension CircleProgrammableWalletSDK.SelectQuestionViewController : UIKit.UIViewControllerTransitioningDelegate {
+  @_Concurrency.MainActor @preconcurrency @objc final public func presentationController(forPresented presented: UIKit.UIViewController, presenting: UIKit.UIViewController?, source: UIKit.UIViewController) -> UIKit.UIPresentationController?
+  @_Concurrency.MainActor @preconcurrency @objc final public func animationController(forPresented presented: UIKit.UIViewController, presenting: UIKit.UIViewController, source: UIKit.UIViewController) -> (any UIKit.UIViewControllerAnimatedTransitioning)?
+  @_Concurrency.MainActor @preconcurrency @objc final public func animationController(forDismissed dismissed: UIKit.UIViewController) -> (any UIKit.UIViewControllerAnimatedTransitioning)?
 }
 extension CircleProgrammableWalletSDK.SelectQuestionViewController : UIKit.UITableViewDataSource, UIKit.UITableViewDelegate {
   @_Concurrency.MainActor @preconcurrency @objc final public func tableView(_ tableView: UIKit.UITableView, numberOfRowsInSection section: Swift.Int) -> Swift.Int

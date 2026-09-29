@@ -532,7 +532,16 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28SelectQuestionViewController")
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)animated;
 - (void)viewWillDisappear:(BOOL)animated;
+- (void)viewSafeAreaInsetsDidChange;
 - (void)observeValueForKeyPath:(NSString * _Nullable)keyPath ofObject:(id _Nullable)object change:(NSDictionary<NSKeyValueChangeKey, id> * _Nullable)change context:(void * _Nullable)context;
+@end
+
+@class UIPresentationController;
+@protocol UIViewControllerAnimatedTransitioning;
+@interface SelectQuestionViewController (SWIFT_EXTENSION(CircleProgrammableWalletSDK)) <UIViewControllerTransitioningDelegate>
+- (UIPresentationController * _Nullable)presentationControllerForPresentedViewController:(UIViewController * _Nonnull)presented presentingViewController:(UIViewController * _Nullable)presenting sourceViewController:(UIViewController * _Nonnull)source SWIFT_WARN_UNUSED_RESULT;
+- (id <UIViewControllerAnimatedTransitioning> _Nullable)animationControllerForPresentedController:(UIViewController * _Nonnull)presented presentingController:(UIViewController * _Nonnull)presenting sourceController:(UIViewController * _Nonnull)source SWIFT_WARN_UNUSED_RESULT;
+- (id <UIViewControllerAnimatedTransitioning> _Nullable)animationControllerForDismissedController:(UIViewController * _Nonnull)dismissed SWIFT_WARN_UNUSED_RESULT;
 @end
 
 @interface SelectQuestionViewController (SWIFT_EXTENSION(CircleProgrammableWalletSDK)) <UITableViewDataSource, UITableViewDelegate>
@@ -546,7 +555,6 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK30SignatureRequestViewController")
 - (void)viewDidLoad;
 @end
 
-@class UIPresentationController;
 @interface TransactionRequestViewController (SWIFT_EXTENSION(CircleProgrammableWalletSDK)) <UIPopoverPresentationControllerDelegate>
 - (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController * _Nonnull)controller SWIFT_WARN_UNUSED_RESULT;
 @end
@@ -1093,7 +1101,16 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK28SelectQuestionViewController")
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)animated;
 - (void)viewWillDisappear:(BOOL)animated;
+- (void)viewSafeAreaInsetsDidChange;
 - (void)observeValueForKeyPath:(NSString * _Nullable)keyPath ofObject:(id _Nullable)object change:(NSDictionary<NSKeyValueChangeKey, id> * _Nullable)change context:(void * _Nullable)context;
+@end
+
+@class UIPresentationController;
+@protocol UIViewControllerAnimatedTransitioning;
+@interface SelectQuestionViewController (SWIFT_EXTENSION(CircleProgrammableWalletSDK)) <UIViewControllerTransitioningDelegate>
+- (UIPresentationController * _Nullable)presentationControllerForPresentedViewController:(UIViewController * _Nonnull)presented presentingViewController:(UIViewController * _Nullable)presenting sourceViewController:(UIViewController * _Nonnull)source SWIFT_WARN_UNUSED_RESULT;
+- (id <UIViewControllerAnimatedTransitioning> _Nullable)animationControllerForPresentedController:(UIViewController * _Nonnull)presented presentingController:(UIViewController * _Nonnull)presenting sourceController:(UIViewController * _Nonnull)source SWIFT_WARN_UNUSED_RESULT;
+- (id <UIViewControllerAnimatedTransitioning> _Nullable)animationControllerForDismissedController:(UIViewController * _Nonnull)dismissed SWIFT_WARN_UNUSED_RESULT;
 @end
 
 @interface SelectQuestionViewController (SWIFT_EXTENSION(CircleProgrammableWalletSDK)) <UITableViewDataSource, UITableViewDelegate>
@@ -1107,7 +1124,6 @@ SWIFT_CLASS("_TtC27CircleProgrammableWalletSDK30SignatureRequestViewController")
 - (void)viewDidLoad;
 @end
 
-@class UIPresentationController;
 @interface TransactionRequestViewController (SWIFT_EXTENSION(CircleProgrammableWalletSDK)) <UIPopoverPresentationControllerDelegate>
 - (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController * _Nonnull)controller SWIFT_WARN_UNUSED_RESULT;
 @end
