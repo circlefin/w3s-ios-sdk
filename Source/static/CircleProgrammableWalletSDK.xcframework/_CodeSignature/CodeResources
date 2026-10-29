@@ -6,7 +6,7 @@
 	<dict>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/Alamofire.bundle/Info.plist</key>
 		<data>
-		ENzhxYOunkwo/AIzFdZE3qBD+lc=
+		XCPBxMGn9VWqtGPnZMq9xmDKjac=
 		</data>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/Alamofire.bundle/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -14,7 +14,7 @@
 		</data>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/CircleProgrammableWalletSDK</key>
 		<data>
-		4VJXDKQyvsMIGp5daFFeoujsrpk=
+		XTzE2zXhcfEEaGgpq9GT5rGQ6dA=
 		</data>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/Headers/CircleProgrammableWalletSDK-Swift.h</key>
 		<data>
@@ -24,17 +24,33 @@
 		<data>
 		xXYaXKan4frl15qrloxqIzI1jMc=
 		</data>
-		<key>ios-arm64/CircleProgrammableWalletSDK.framework/IQKeyboardManagerSwift.bundle/Info.plist</key>
+		<key>ios-arm64/CircleProgrammableWalletSDK.framework/IQKeyboardCore.bundle/Info.plist</key>
 		<data>
-		AjY9vY4CpILa9a9tFIn4mDhpmFc=
+		osrnkN6x69MtH2D09I6GnfccfcE=
 		</data>
-		<key>ios-arm64/CircleProgrammableWalletSDK.framework/IQKeyboardManagerSwift.bundle/PrivacyInfo.xcprivacy</key>
+		<key>ios-arm64/CircleProgrammableWalletSDK.framework/IQKeyboardCore.bundle/PrivacyInfo.xcprivacy</key>
 		<data>
-		wkjPbMAS1FzFbO9jgIrHviOsTwI=
+		BgUYYYYE9Hbd9WnbrgXuEmCN7F0=
+		</data>
+		<key>ios-arm64/CircleProgrammableWalletSDK.framework/IQKeyboardNotification.bundle/Info.plist</key>
+		<data>
+		GtQ5SGnx2K4/Kj5qYkIi06VOiao=
+		</data>
+		<key>ios-arm64/CircleProgrammableWalletSDK.framework/IQKeyboardNotification.bundle/PrivacyInfo.xcprivacy</key>
+		<data>
+		BgUYYYYE9Hbd9WnbrgXuEmCN7F0=
+		</data>
+		<key>ios-arm64/CircleProgrammableWalletSDK.framework/IQTextInputViewNotification.bundle/Info.plist</key>
+		<data>
+		y4HiBXCutOq9QoO5lV/TzVFhPpA=
+		</data>
+		<key>ios-arm64/CircleProgrammableWalletSDK.framework/IQTextInputViewNotification.bundle/PrivacyInfo.xcprivacy</key>
+		<data>
+		BgUYYYYE9Hbd9WnbrgXuEmCN7F0=
 		</data>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/Info.plist</key>
 		<data>
-		9Bq1Z20QZSPO68LkeIB+RYFhCL8=
+		8DiQli9tF7xq5g1xgHve6FxudCE=
 		</data>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/Modules/CircleProgrammableWalletSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
@@ -62,7 +78,7 @@
 		</data>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/SDWebImage.bundle/Info.plist</key>
 		<data>
-		haimiT4u7LzKpzmH2HmhfGx3Nro=
+		qE5hQktUORO8DbEebvU0CbBoiTs=
 		</data>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/SDWebImage.bundle/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -70,7 +86,7 @@
 		</data>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/SnapKit_Privacy.bundle/Info.plist</key>
 		<data>
-		N4Fv+38vvFMjHC4fVAcNcm3PUOA=
+		T60+x5j+FWcZSl5br553oibSKks=
 		</data>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/SnapKit_Privacy.bundle/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -78,15 +94,15 @@
 		</data>
 		<key>ios-arm64/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Info.plist</key>
 		<data>
-		FJ+8V7BEG+Pcnb1RvzyxDWzi1Q4=
+		m6B5vycgo/4eEhoE078vA/mhXSE=
 		</data>
 		<key>ios-arm64/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Resources/DWARF/CircleProgrammableWalletSDK</key>
 		<data>
-		2ENKCCdkjHtRk0jYdCJxn/aOxeQ=
+		1UvoBv57Pn0Qi/AHfr+pVDwpIwk=
 		</data>
 		<key>ios-arm64/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Resources/Relocations/aarch64/CircleProgrammableWalletSDK.yml</key>
 		<data>
-		Ho84Z3K5f3tcTn+h7QS12RqT7kQ=
+		dbkqpasjP+QVfUrKvwFCZRDsX4k=
 		</data>
 		<key>ios-arm64/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Resources/Swift/aarch64/FBSDKLoginKit.swiftinterface</key>
 		<data>
@@ -94,7 +110,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Alamofire.bundle/Info.plist</key>
 		<data>
-		UbUUQ46Skc0E0fekTW7uE9NWTyw=
+		4N8p7KV6iBUK2sdXTRLnFj44Emg=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Alamofire.bundle/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -102,7 +118,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/CircleProgrammableWalletSDK</key>
 		<data>
-		8tZZggvgKsxG4zycd/UBP+CZYZY=
+		dpWGDgftahSEiFtvlU4259X0kiw=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Headers/CircleProgrammableWalletSDK-Swift.h</key>
 		<data>
@@ -112,17 +128,33 @@
 		<data>
 		xXYaXKan4frl15qrloxqIzI1jMc=
 		</data>
-		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/IQKeyboardManagerSwift.bundle/Info.plist</key>
+		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/IQKeyboardCore.bundle/Info.plist</key>
 		<data>
-		M8hj7ugSxNo+7oJMNURdNcsMxHk=
+		BhAvRV3ZdkzwIrhtc/I0bIkN1jI=
 		</data>
-		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/IQKeyboardManagerSwift.bundle/PrivacyInfo.xcprivacy</key>
+		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/IQKeyboardCore.bundle/PrivacyInfo.xcprivacy</key>
 		<data>
-		wkjPbMAS1FzFbO9jgIrHviOsTwI=
+		BgUYYYYE9Hbd9WnbrgXuEmCN7F0=
+		</data>
+		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/IQKeyboardNotification.bundle/Info.plist</key>
+		<data>
+		YcdUTy3Vc0PY/75JHSyFP1/Bp9U=
+		</data>
+		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/IQKeyboardNotification.bundle/PrivacyInfo.xcprivacy</key>
+		<data>
+		BgUYYYYE9Hbd9WnbrgXuEmCN7F0=
+		</data>
+		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/IQTextInputViewNotification.bundle/Info.plist</key>
+		<data>
+		JUbHE384gHl235Inj/43lrBD2Ck=
+		</data>
+		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/IQTextInputViewNotification.bundle/PrivacyInfo.xcprivacy</key>
+		<data>
+		BgUYYYYE9Hbd9WnbrgXuEmCN7F0=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Info.plist</key>
 		<data>
-		R1qouR/IgUyf0ALoj513PjVdMfQ=
+		WEL3DJQb20OqwbaxlLxytK3lUyY=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Modules/CircleProgrammableWalletSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -166,7 +198,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/SDWebImage.bundle/Info.plist</key>
 		<data>
-		qvtUFbxxVQJ3L9k06A7jvyBAkbE=
+		kezLCTnqm2+B3kWHJRumKMwZY2U=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/SDWebImage.bundle/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -174,7 +206,7 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/SnapKit_Privacy.bundle/Info.plist</key>
 		<data>
-		cxqkxfemLgmBAyz+jT9xUI2RfW4=
+		EKSnt/gLHrTSUhykQilvNpX36jg=
 		</data>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/SnapKit_Privacy.bundle/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -182,23 +214,23 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/_CodeSignature/CodeResources</key>
 		<data>
-		W8TiBvOyt0rxtUXlwGdgr01YiIs=
+		3NEwxL5q6DgbWbLImDbIW7iWGWI=
 		</data>
 		<key>ios-arm64_x86_64-simulator/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Info.plist</key>
 		<data>
-		FJ+8V7BEG+Pcnb1RvzyxDWzi1Q4=
+		m6B5vycgo/4eEhoE078vA/mhXSE=
 		</data>
 		<key>ios-arm64_x86_64-simulator/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Resources/DWARF/CircleProgrammableWalletSDK</key>
 		<data>
-		YlCoOqPqKzv4jGQY5jIq50Y7Nds=
+		yerpqyuqeRx93y0wG2JYOmJlufU=
 		</data>
 		<key>ios-arm64_x86_64-simulator/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Resources/Relocations/aarch64/CircleProgrammableWalletSDK.yml</key>
 		<data>
-		alqbghGWSLy2tgyxo6drFeKuIwc=
+		HrT8NaS/XTxe/OFPYBGJGUovB44=
 		</data>
 		<key>ios-arm64_x86_64-simulator/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Resources/Relocations/x86_64/CircleProgrammableWalletSDK.yml</key>
 		<data>
-		eIRFfvJ1s/54T459XyLwAssuJe8=
+		Fe4TVRTS5ulsBzQCD1pRVefkwbY=
 		</data>
 		<key>ios-arm64_x86_64-simulator/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Resources/Swift/aarch64/FBSDKLoginKit.swiftinterface</key>
 		<data>
@@ -213,21 +245,13 @@
 	<dict>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/Alamofire.bundle/Info.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ENzhxYOunkwo/AIzFdZE3qBD+lc=
-			</data>
 			<key>hash2</key>
 			<data>
-			bdbs5A4mfGtpatVWaZakRWPpZsfO2ar51L0CguQdWpU=
+			yMw53rL4pQ1B1GzgZ6BWnuDRRvFCcUsJMLUn7wUN+/Q=
 			</data>
 		</dict>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/Alamofire.bundle/PrivacyInfo.xcprivacy</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ovFJMFOLMjzh8DLJKmXncj8JIgU=
-			</data>
 			<key>hash2</key>
 			<data>
 			CNkOaUbb/qDQtbF/tlnXfu0j5EO3Rdjntbn6N4y3RHc=
@@ -235,21 +259,13 @@
 		</dict>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/CircleProgrammableWalletSDK</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			4VJXDKQyvsMIGp5daFFeoujsrpk=
-			</data>
 			<key>hash2</key>
 			<data>
-			L8M/LAU2nneWryEb3/kxaYxX4eoeSJHN1hG6TiI9hhI=
+			FJvRb9c36ivMQuiqtQ6ljU1K5POAh26+JsJl3rCKBQ0=
 			</data>
 		</dict>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/Headers/CircleProgrammableWalletSDK-Swift.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			2FZxKPOBpDC8nmQ8uzskS3bH46A=
-			</data>
 			<key>hash2</key>
 			<data>
 			WaQx0BcXujIFCXpf9leTPzZ59hL7P4/Ihil1qPNATws=
@@ -257,54 +273,62 @@
 		</dict>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/Headers/CircleProgrammableWalletSDK.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			xXYaXKan4frl15qrloxqIzI1jMc=
-			</data>
 			<key>hash2</key>
 			<data>
 			5GekZjYSsy6cMt+meFgUGhQLPRSxckn5P8zEctwEn8g=
 			</data>
 		</dict>
-		<key>ios-arm64/CircleProgrammableWalletSDK.framework/IQKeyboardManagerSwift.bundle/Info.plist</key>
+		<key>ios-arm64/CircleProgrammableWalletSDK.framework/IQKeyboardCore.bundle/Info.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			AjY9vY4CpILa9a9tFIn4mDhpmFc=
-			</data>
 			<key>hash2</key>
 			<data>
-			ii41Ih/6m6P3cpihgp9LD73qt43xM3s0kiJdgkL6GRM=
+			CeN7Si6ss3sylnipobFi5wwQ60bLiMhTOG2v9+afoXc=
 			</data>
 		</dict>
-		<key>ios-arm64/CircleProgrammableWalletSDK.framework/IQKeyboardManagerSwift.bundle/PrivacyInfo.xcprivacy</key>
+		<key>ios-arm64/CircleProgrammableWalletSDK.framework/IQKeyboardCore.bundle/PrivacyInfo.xcprivacy</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			wkjPbMAS1FzFbO9jgIrHviOsTwI=
-			</data>
 			<key>hash2</key>
 			<data>
-			L1MeSJaV009u9ub7hWV5Cb86cECKFonRHPrVoDfSiFk=
+			NzH9eSR3GTVLxN2mojV2HnD7wXmlHbbqaFGLIoT7WQg=
+			</data>
+		</dict>
+		<key>ios-arm64/CircleProgrammableWalletSDK.framework/IQKeyboardNotification.bundle/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			fiBWmQpSnq0no9OBjd9XjNY4ziD715inodSnFOVtSrI=
+			</data>
+		</dict>
+		<key>ios-arm64/CircleProgrammableWalletSDK.framework/IQKeyboardNotification.bundle/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			NzH9eSR3GTVLxN2mojV2HnD7wXmlHbbqaFGLIoT7WQg=
+			</data>
+		</dict>
+		<key>ios-arm64/CircleProgrammableWalletSDK.framework/IQTextInputViewNotification.bundle/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			QD2M4gPF6Ca2G1vclSROlVeJW0dK8TYd/IHKgupj/Vo=
+			</data>
+		</dict>
+		<key>ios-arm64/CircleProgrammableWalletSDK.framework/IQTextInputViewNotification.bundle/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			NzH9eSR3GTVLxN2mojV2HnD7wXmlHbbqaFGLIoT7WQg=
 			</data>
 		</dict>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/Info.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			9Bq1Z20QZSPO68LkeIB+RYFhCL8=
-			</data>
 			<key>hash2</key>
 			<data>
-			RJv8VdV0veNOHaQEBJ/pFbDbbXPihI6rqKEe4RjZs3I=
+			phrfFhhUwuxAJcovskw4+XVqb27KpTLhIYuyOT/YheY=
 			</data>
 		</dict>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/Modules/CircleProgrammableWalletSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			gcwBsH4BgyFY4sVtNt+/xOKS3vY=
-			</data>
 			<key>hash2</key>
 			<data>
 			Qnesa0n4URGWAopawg9bGx36dUwkYV00BoCJ8LFzlyg=
@@ -312,10 +336,6 @@
 		</dict>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/Modules/CircleProgrammableWalletSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			yHAjb/aHy5cAbzovCTcqlNTzDE4=
-			</data>
 			<key>hash2</key>
 			<data>
 			JNTMVkXmPBIpOeeVqrz/RqUKmYu3B93RIPBe2VNp/P8=
@@ -323,10 +343,6 @@
 		</dict>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/Modules/CircleProgrammableWalletSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			CWZCNMOtE6YZBt+NcG6O7gedMCw=
-			</data>
 			<key>hash2</key>
 			<data>
 			JuxvJF+deP1VEdPzdZdbvSKDnFhcfUMZsn3LWxQi8v8=
@@ -334,10 +350,6 @@
 		</dict>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/Modules/CircleProgrammableWalletSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			yHAjb/aHy5cAbzovCTcqlNTzDE4=
-			</data>
 			<key>hash2</key>
 			<data>
 			JNTMVkXmPBIpOeeVqrz/RqUKmYu3B93RIPBe2VNp/P8=
@@ -345,10 +357,6 @@
 		</dict>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/Modules/module.modulemap</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			mYwDP4VH3oqas3yfr/zW6CGIEeA=
-			</data>
 			<key>hash2</key>
 			<data>
 			YP6WZxC3+VwqJiFlhgRQ4f1sHcApD9XGRg3ixHbG0aU=
@@ -356,10 +364,6 @@
 		</dict>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/PrivacyInfo.xcprivacy</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			G+J3sjhHkcD6+SIiUA2K9sEu5+A=
-			</data>
 			<key>hash2</key>
 			<data>
 			YKZAQnYJ9mUUVuGK2GE4LuDmEaslWuxNUVSdWEIEggg=
@@ -367,21 +371,13 @@
 		</dict>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/SDWebImage.bundle/Info.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			haimiT4u7LzKpzmH2HmhfGx3Nro=
-			</data>
 			<key>hash2</key>
 			<data>
-			vHymPGVa+QSwNOcxqDXdV9LheeM7PqZuqUHuurchzek=
+			ud+T5xztFzemXg/dDYBTCGdXqJH8Lp1gUkWOCvb4JRY=
 			</data>
 		</dict>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/SDWebImage.bundle/PrivacyInfo.xcprivacy</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			PFHYbs0V3eUFDWQyYQcwEetuqEk=
-			</data>
 			<key>hash2</key>
 			<data>
 			A7LHCDOjMaKx79Ef8WjtAqjq39Xn0fvzDuzHUJpK6kc=
@@ -389,21 +385,13 @@
 		</dict>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/SnapKit_Privacy.bundle/Info.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			N4Fv+38vvFMjHC4fVAcNcm3PUOA=
-			</data>
 			<key>hash2</key>
 			<data>
-			OvJWjsvM2M1zXqo0zaDLHoBIy8tAJ9S8FJrqio2K6FE=
+			Pjp8N2bswaifSj29zmZR8TVvoSZ0yzj7vILPvv5y4io=
 			</data>
 		</dict>
 		<key>ios-arm64/CircleProgrammableWalletSDK.framework/SnapKit_Privacy.bundle/PrivacyInfo.xcprivacy</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			F6mYXr6EQZyLKcQNM0vmTGcGMns=
-			</data>
 			<key>hash2</key>
 			<data>
 			oHQY5f4SjiJM03lkvCHFA7eqL1dee0knRoR4rYcyFP4=
@@ -411,43 +399,27 @@
 		</dict>
 		<key>ios-arm64/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Info.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			FJ+8V7BEG+Pcnb1RvzyxDWzi1Q4=
-			</data>
 			<key>hash2</key>
 			<data>
-			T0KSj30ou/BfbQF7jqVMAjtPflK8rdxg5oRc9IF01v4=
+			EQsP2j+nr0YMbIs3RHqCTL04WyJ83q5tYz9wJMUnOIA=
 			</data>
 		</dict>
 		<key>ios-arm64/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Resources/DWARF/CircleProgrammableWalletSDK</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			2ENKCCdkjHtRk0jYdCJxn/aOxeQ=
-			</data>
 			<key>hash2</key>
 			<data>
-			eDCDpGud1XVKAhpeMFhAh4FqJ5QwXTkUJuvsblZZkEc=
+			qLOqBF8T0qUwtYUAPHF+nMCrwkDb4Mx0psD710MtzbA=
 			</data>
 		</dict>
 		<key>ios-arm64/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Resources/Relocations/aarch64/CircleProgrammableWalletSDK.yml</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Ho84Z3K5f3tcTn+h7QS12RqT7kQ=
-			</data>
 			<key>hash2</key>
 			<data>
-			LGXieEChRL3GSAmJFpgipjTdCQmQY2cqInCBXd/HuIs=
+			gOGVhGmUXM4nMKPHvgk3weUsFuLL19TOLMkHgNrqOjQ=
 			</data>
 		</dict>
 		<key>ios-arm64/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Resources/Swift/aarch64/FBSDKLoginKit.swiftinterface</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Qy1jW7TeaoFT1sLZ34yzpG5prLU=
-			</data>
 			<key>hash2</key>
 			<data>
 			W8vLX4P+Hcv5I9wT4f4A5UMDF2p8UzUzmd/c6SKqCcw=
@@ -455,21 +427,13 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Alamofire.bundle/Info.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			UbUUQ46Skc0E0fekTW7uE9NWTyw=
-			</data>
 			<key>hash2</key>
 			<data>
-			fLgrOG4Yqp0bHP+sceoBz9LZ7obw2oevLQKMlBCK5qM=
+			n1uvoKEuMQSsWHfwMWRW0mMBfnbwItwQp85vHSdWb08=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Alamofire.bundle/PrivacyInfo.xcprivacy</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ovFJMFOLMjzh8DLJKmXncj8JIgU=
-			</data>
 			<key>hash2</key>
 			<data>
 			CNkOaUbb/qDQtbF/tlnXfu0j5EO3Rdjntbn6N4y3RHc=
@@ -477,21 +441,13 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/CircleProgrammableWalletSDK</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			8tZZggvgKsxG4zycd/UBP+CZYZY=
-			</data>
 			<key>hash2</key>
 			<data>
-			nmgd3S9vqfZ7MTdviMc736twqH26tQV3rN4OF2eA1kc=
+			clt2iKIfL8Yr9t43AXaN71YVuO58GhGFqQ4Zntd/gfw=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Headers/CircleProgrammableWalletSDK-Swift.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			WQUHr4IrS+ZwgxzUbnFkdBdR5/k=
-			</data>
 			<key>hash2</key>
 			<data>
 			B2rzFQFjrSnR3onH6dJ1URxpIkEG5ZLf4l9PXr2UJ8c=
@@ -499,54 +455,62 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Headers/CircleProgrammableWalletSDK.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			xXYaXKan4frl15qrloxqIzI1jMc=
-			</data>
 			<key>hash2</key>
 			<data>
 			5GekZjYSsy6cMt+meFgUGhQLPRSxckn5P8zEctwEn8g=
 			</data>
 		</dict>
-		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/IQKeyboardManagerSwift.bundle/Info.plist</key>
+		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/IQKeyboardCore.bundle/Info.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			M8hj7ugSxNo+7oJMNURdNcsMxHk=
-			</data>
 			<key>hash2</key>
 			<data>
-			miJ4+PTLG01bVhf689euw1mOO7OzIc+M+d8IvYHw6LM=
+			flCB2RdRZlgGUDAaVA5oSSdgXfJQlbwo2g3KPBvVTfw=
 			</data>
 		</dict>
-		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/IQKeyboardManagerSwift.bundle/PrivacyInfo.xcprivacy</key>
+		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/IQKeyboardCore.bundle/PrivacyInfo.xcprivacy</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			wkjPbMAS1FzFbO9jgIrHviOsTwI=
-			</data>
 			<key>hash2</key>
 			<data>
-			L1MeSJaV009u9ub7hWV5Cb86cECKFonRHPrVoDfSiFk=
+			NzH9eSR3GTVLxN2mojV2HnD7wXmlHbbqaFGLIoT7WQg=
+			</data>
+		</dict>
+		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/IQKeyboardNotification.bundle/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			BfLsZXMwvQiRW9WHNsGNV8TG8vdfWc54gNHjsuSQ+Uc=
+			</data>
+		</dict>
+		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/IQKeyboardNotification.bundle/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			NzH9eSR3GTVLxN2mojV2HnD7wXmlHbbqaFGLIoT7WQg=
+			</data>
+		</dict>
+		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/IQTextInputViewNotification.bundle/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			zPw60oFxrx6zhJMjqs+y8tq5AMsVieQRIBZ5qH9aeEM=
+			</data>
+		</dict>
+		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/IQTextInputViewNotification.bundle/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			NzH9eSR3GTVLxN2mojV2HnD7wXmlHbbqaFGLIoT7WQg=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Info.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			R1qouR/IgUyf0ALoj513PjVdMfQ=
-			</data>
 			<key>hash2</key>
 			<data>
-			Ob2Oz0DqCJQSHzuRNwm0HKmnfqZ5UG4uPIf+YbZSLHE=
+			EJAcgHNFnjB3MaHDw7UOLMZWYAOGx3sDG5iDlgi+USY=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Modules/CircleProgrammableWalletSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			gcwBsH4BgyFY4sVtNt+/xOKS3vY=
-			</data>
 			<key>hash2</key>
 			<data>
 			Qnesa0n4URGWAopawg9bGx36dUwkYV00BoCJ8LFzlyg=
@@ -554,10 +518,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Modules/CircleProgrammableWalletSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			+k96b00K9yl8zO1Au43cga2BejA=
-			</data>
 			<key>hash2</key>
 			<data>
 			ujICuJTrP7kA13yMKmHRagX+Z6zIDVhHLwgrEtWYFnU=
@@ -565,10 +525,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Modules/CircleProgrammableWalletSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			OGwnXAZ7s5+gLr2n3IVvtehG9fk=
-			</data>
 			<key>hash2</key>
 			<data>
 			IfY6mNL5H7AmP/PTibbv7mGqq42vOR2AXSc5Eeq4N/Y=
@@ -576,10 +532,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Modules/CircleProgrammableWalletSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			+k96b00K9yl8zO1Au43cga2BejA=
-			</data>
 			<key>hash2</key>
 			<data>
 			ujICuJTrP7kA13yMKmHRagX+Z6zIDVhHLwgrEtWYFnU=
@@ -587,10 +539,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Modules/CircleProgrammableWalletSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			gcwBsH4BgyFY4sVtNt+/xOKS3vY=
-			</data>
 			<key>hash2</key>
 			<data>
 			Qnesa0n4URGWAopawg9bGx36dUwkYV00BoCJ8LFzlyg=
@@ -598,10 +546,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Modules/CircleProgrammableWalletSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			fPZpqKB2u8CgdUzsjLPV1/0n+II=
-			</data>
 			<key>hash2</key>
 			<data>
 			JxSwUNCTU0CyAG+ob/kvAE9M2hwH6IwrrP/75oeoxlk=
@@ -609,10 +553,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Modules/CircleProgrammableWalletSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			/+KeurcFXEluhb2TNPBCDMZRhTY=
-			</data>
 			<key>hash2</key>
 			<data>
 			foQriKOQnG+5vQ7wsNuokVwmqRrqs8YoQTJFm9yAGtU=
@@ -620,10 +560,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Modules/CircleProgrammableWalletSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			fPZpqKB2u8CgdUzsjLPV1/0n+II=
-			</data>
 			<key>hash2</key>
 			<data>
 			JxSwUNCTU0CyAG+ob/kvAE9M2hwH6IwrrP/75oeoxlk=
@@ -631,10 +567,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/Modules/module.modulemap</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			mYwDP4VH3oqas3yfr/zW6CGIEeA=
-			</data>
 			<key>hash2</key>
 			<data>
 			YP6WZxC3+VwqJiFlhgRQ4f1sHcApD9XGRg3ixHbG0aU=
@@ -642,10 +574,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/PrivacyInfo.xcprivacy</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			G+J3sjhHkcD6+SIiUA2K9sEu5+A=
-			</data>
 			<key>hash2</key>
 			<data>
 			YKZAQnYJ9mUUVuGK2GE4LuDmEaslWuxNUVSdWEIEggg=
@@ -653,21 +581,13 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/SDWebImage.bundle/Info.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			qvtUFbxxVQJ3L9k06A7jvyBAkbE=
-			</data>
 			<key>hash2</key>
 			<data>
-			w7cwI4Aj2UifEWHXUqz9yCzE2GMeL8aXztj7tRwBhOM=
+			yDJiI7nkNbtW8HJbJOiY6U25WsqSGCpKPNsHnTZRn5I=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/SDWebImage.bundle/PrivacyInfo.xcprivacy</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			PFHYbs0V3eUFDWQyYQcwEetuqEk=
-			</data>
 			<key>hash2</key>
 			<data>
 			A7LHCDOjMaKx79Ef8WjtAqjq39Xn0fvzDuzHUJpK6kc=
@@ -675,21 +595,13 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/SnapKit_Privacy.bundle/Info.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			cxqkxfemLgmBAyz+jT9xUI2RfW4=
-			</data>
 			<key>hash2</key>
 			<data>
-			xPSVvgK02AyCLXtgW1jloHFkYQZO+rpkVNRC+ZvjnEs=
+			5Cb2CyzLFKRNRSMqAD7VO1CUwfYo7QtI1fhcAJyvWRk=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/SnapKit_Privacy.bundle/PrivacyInfo.xcprivacy</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			F6mYXr6EQZyLKcQNM0vmTGcGMns=
-			</data>
 			<key>hash2</key>
 			<data>
 			oHQY5f4SjiJM03lkvCHFA7eqL1dee0knRoR4rYcyFP4=
@@ -697,65 +609,41 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/CircleProgrammableWalletSDK.framework/_CodeSignature/CodeResources</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			W8TiBvOyt0rxtUXlwGdgr01YiIs=
-			</data>
 			<key>hash2</key>
 			<data>
-			4+gsfyxgvHnyZVuCcAZFKXHWtdtguUnxm5MTbtZGacg=
+			rPTJZGkL57wJXKj3xatC3+BLGSMe107qwiAkJ0wwyGo=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Info.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			FJ+8V7BEG+Pcnb1RvzyxDWzi1Q4=
-			</data>
 			<key>hash2</key>
 			<data>
-			T0KSj30ou/BfbQF7jqVMAjtPflK8rdxg5oRc9IF01v4=
+			EQsP2j+nr0YMbIs3RHqCTL04WyJ83q5tYz9wJMUnOIA=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Resources/DWARF/CircleProgrammableWalletSDK</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			YlCoOqPqKzv4jGQY5jIq50Y7Nds=
-			</data>
 			<key>hash2</key>
 			<data>
-			yDMc8MOWrmxy/c/8hw5+ezaJ8UOF7sdwdURB/Teg84k=
+			lp5QEU79OE3lWR/kjBOSCdet8Fz1ujOGr4GzaFNpqqo=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Resources/Relocations/aarch64/CircleProgrammableWalletSDK.yml</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			alqbghGWSLy2tgyxo6drFeKuIwc=
-			</data>
 			<key>hash2</key>
 			<data>
-			pvzHPwVbkxo/qTxJ5KZ2jwXyYpLB16hRxbEien4o44I=
+			/GuksPt4dt7EyfyFNyfbe8ZyHyHFgelD8pr/5C/6IdA=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Resources/Relocations/x86_64/CircleProgrammableWalletSDK.yml</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			eIRFfvJ1s/54T459XyLwAssuJe8=
-			</data>
 			<key>hash2</key>
 			<data>
-			EKektFAT7r9rS19/h6W+a40C2o6PFJI8k0xHZXdmxxY=
+			sthjVuOzFcaOZZjYdOnov5eLLlzdomzucfXbNy8PBQ0=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Resources/Swift/aarch64/FBSDKLoginKit.swiftinterface</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ouBVeevyUeuZ7++seMzrJM8Pw5E=
-			</data>
 			<key>hash2</key>
 			<data>
 			wkOUEumaMOZRIE73EpGFHRFOE/E6POi8Xpd+VVevC8U=
@@ -763,10 +651,6 @@
 		</dict>
 		<key>ios-arm64_x86_64-simulator/dSYMs/CircleProgrammableWalletSDK.framework.dSYM/Contents/Resources/Swift/x86_64/FBSDKLoginKit.swiftinterface</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			9xLvEcb57VLJ95OxV9NpjwodpQM=
-			</data>
 			<key>hash2</key>
 			<data>
 			1bezunNhsNtcxBcqIgXu0PggzGasID2rtN8n5ewKUW8=
