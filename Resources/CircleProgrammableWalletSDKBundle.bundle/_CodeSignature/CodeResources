@@ -25,10 +25,6 @@
 	<dict>
 		<key>Assets.car</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			bR7Ycpb2Z3cG5+RUgp2L9mOrplo=
-			</data>
 			<key>hash2</key>
 			<data>
 			dw89op3jBl0Bpzpi0nwJJBwPBWSItr4dUxJTneV1iuM=
@@ -36,10 +32,6 @@
 		</dict>
 		<key>CirclePWLocalizable.strings</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			cDvz5bobD+juMPKgjiAEx6I+90M=
-			</data>
 			<key>hash2</key>
 			<data>
 			nzZsH3trH/1b+I5ZMb3kvyOxxzOd8yDelqIkD1CbiIo=
@@ -47,10 +39,6 @@
 		</dict>
 		<key>CirclePWTheme.json</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			y1RZj7g6tJG7tDWYAAbYsrL4OHY=
-			</data>
 			<key>hash2</key>
 			<data>
 			f4m9VInkZ8EJe9Y4LYPbGTicQOrvwXCjlV4BYDc8pBE=
@@ -58,10 +46,6 @@
 		</dict>
 		<key>PrivacyInfo.xcprivacy</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			G+J3sjhHkcD6+SIiUA2K9sEu5+A=
-			</data>
 			<key>hash2</key>
 			<data>
 			YKZAQnYJ9mUUVuGK2GE4LuDmEaslWuxNUVSdWEIEggg=
